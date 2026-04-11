@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Kasse – Feel1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --brown:#40312D; --brown2:#5a4540; --rose:#B58D94; --rose-bg:#F5ECEE;
+      --cream:#F9F6F2; --light:#F2EAE2; --border:#E8E0D6; --muted:#7A6860;
+      --grey:#A89890; --star:#F5A623; --green:#3E8A5A; --red:#D21D1D;
+      --bg:#F4F1EE;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Figtree',sans-serif;background:var(--bg);color:var(--brown);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block;max-width:100%;}
+
+    /* ── HEADER ── */
+    .co-header{background:var(--brown);padding:0 24px;display:flex;align-items:center;justify-content:center;min-height:58px;position:relative;}
+    .co-header-logo{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.5px;display:flex;align-items:center;gap:8px;}
+    .co-header-secure{position:absolute;right:20px;display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(255,255,255,.5);font-weight:500;}
+    .co-header-secure svg{opacity:.6;}
+    @media(max-width:480px){.co-header-secure{display:none;}}
+
+    /* ── PROGRESS ── */
+    .co-progress{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;}
+    .co-steps{max-width:520px;margin:0 auto;display:flex;align-items:center;}
+    .co-step{display:flex;align-items:center;gap:7px;padding:13px 0;font-size:12px;font-weight:600;color:var(--grey);white-space:nowrap;}
+    .co-step.active{color:var(--brown);}
+    .co-step.done{color:var(--green);}
+    .co-step-num{width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;transition:all .2s;}
+    .co-step.done .co-step-num{background:var(--green);border-color:var(--green);color:#fff;}
+    .co-step.active .co-step-num{background:var(--brown);border-color:var(--brown);color:#fff;}
+    .co-step-line{flex:1;height:1.5px;background:var(--border);margin:0 8px;}
+    .co-step.done+.co-step-line{background:var(--green);opacity:.4;}
+    @media(max-width:480px){.co-step .co-step-label{display:none;}.co-step-line{margin:0 5px;}}
+
+    /* ── LAYOUT ── */
+    .co-wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start;}
+    @media(max-width:800px){.co-wrap{grid-template-columns:1fr;padding:16px 12px 80px;}}
+
+    /* ── PANELS ── */
+    .co-panel{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 6px rgba(64,49,45,.05);}
+    .co-panel:last-child{margin-bottom:0;}
+    .co-panel-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--cream);}
+    .co-panel-hdr-icon{width:26px;height:26px;border-radius:8px;background:var(--brown);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .co-panel-hdr-icon svg{width:13px;height:13px;}
+    .co-panel-title{font-size:13.5px;font-weight:600;color:var(--brown);letter-spacing:.1px;}
+    .co-panel-body{padding:18px;}
+
+    /* ── ORDER ITEM ── */
+    .co-item{display:flex;align-items:flex-start;gap:14px;}
+    .co-item-img{width:76px;height:76px;border-radius:10px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:var(--light);}
+    .co-item-img img{width:100%;height:100%;object-fit:cover;}
+    .co-item-info{flex:1;min-width:0;}
+    .co-item-name{font-size:14px;font-weight:600;color:var(--brown);line-height:1.3;margin-bottom:2px;}
+    .co-item-sub{font-size:11.5px;color:var(--muted);margin-bottom:6px;}
+    .co-item-right{text-align:right;flex-shrink:0;}
+    .co-item-price{font-size:16px;font-weight:700;color:var(--brown);}
+    .co-item-old{font-size:11.5px;color:var(--grey);text-decoration:line-through;margin-bottom:4px;}
+
+    /* ── QTY ── */
+    .co-qty{display:inline-flex;align-items:center;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-top:8px;}
+    .co-qty-btn{width:30px;height:30px;background:var(--cream);border:none;cursor:pointer;font-size:16px;color:var(--brown);display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0;font-weight:500;}
+    .co-qty-btn:hover{background:var(--light);}
+    .co-qty-val{width:34px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:600;color:var(--brown);border-left:1px solid var(--border);border-right:1px solid var(--border);}
+
+    /* ── UPSELL ── */
+    .co-upsell{background:linear-gradient(110deg,#FBF1F2,#F5ECEE);border:1.5px solid #DDB8BC;border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;margin-top:14px;}
+    .co-upsell-img{width:62px;height:62px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid #DDB8BC;}
+    .co-upsell-img img{width:100%;height:100%;object-fit:cover;}
+    .co-upsell-info{flex:1;min-width:0;}
+    .co-upsell-tag{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#C12836;margin-bottom:3px;}
+    .co-upsell-name{font-size:13px;font-weight:600;color:var(--brown);line-height:1.3;margin-bottom:2px;}
+    .co-upsell-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+    .co-upsell-price-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+    .co-upsell-new{font-size:14px;font-weight:700;color:var(--brown);}
+    .co-upsell-was{font-size:11px;color:var(--grey);text-decoration:line-through;}
+    .co-upsell-save{font-size:10px;font-weight:700;background:#C12836;color:#fff;padding:2px 6px;border-radius:3px;}
+    .co-upsell-btn{display:inline-flex;align-items:center;gap:5px;background:var(--brown);color:#fff;font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:7px;border:none;cursor:pointer;transition:background .15s;}
+    .co-upsell-btn:hover{background:var(--brown2);}
+    .co-upsell-btn.added{background:var(--green);cursor:default;}
+    .co-upsell-btn.added:hover{background:var(--green);}
+    .co-upsell-added-msg{display:none;font-size:11.5px;font-weight:600;color:var(--green);margin-top:6px;align-items:center;gap:5px;}
+    .co-upsell-added-msg.show{display:flex;}
+
+    /* ── DIVIDER ── */
+    .co-divider{height:1px;background:var(--border);margin:14px 0;}
+
+    /* ── TOTALS ── */
+    .co-total-row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--muted);margin-bottom:7px;}
+    .co-total-row.final{font-size:17px;font-weight:700;color:var(--brown);margin-top:6px;margin-bottom:0;padding-top:2px;}
+    .co-total-row.savings{color:var(--green);font-weight:600;}
+    .co-shipping-badge{font-size:12px;font-weight:600;color:var(--green);}
+
+    /* ── FORM SECTION LABEL ── */
+    .co-section-lbl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+    /* ── FORM ── */
+    .co-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+    .co-form-row.full{grid-template-columns:1fr;}
+    .co-field{display:flex;flex-direction:column;gap:4px;}
+    .co-label{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.1px;}
+    .co-input{border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Figtree',sans-serif;font-size:14px;color:var(--brown);background:#fff;transition:border-color .15s,box-shadow .15s;outline:none;width:100%;}
+    .co-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(181,141,148,.12);}
+    .co-input.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(210,29,29,.08);}
+    .co-input::placeholder{color:var(--grey);}
+    .co-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6860' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;}
+
+    /* ── PAYMENT TABS ── */
+    .co-payment-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+    .co-pm{border:1.5px solid var(--border);border-radius:9px;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:600;color:var(--muted);transition:border-color .15s,background .15s,color .15s;text-align:center;}
+    .co-pm:hover{border-color:var(--brown);background:var(--cream);}
+    .co-pm.active{border-color:var(--brown);background:var(--cream);color:var(--brown);}
+    .co-pm svg{flex-shrink:0;}
+    .co-card-row{position:relative;}
+    .co-card-icons{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;gap:4px;pointer-events:none;}
+    @media(max-width:380px){.co-card-icons{display:none;}}
+
+    /* ── SUBMIT ── */
+    .co-submit-wrap{padding:6px 0 0;}
+    .btn-co-submit{width:100%;background:var(--brown);color:#fff;font-family:'Figtree',sans-serif;font-size:15.5px;font-weight:600;padding:17px 24px;border:none;border-radius:12px;cursor:pointer;transition:background .2s,transform .1s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(64,49,45,.28);}
+    .btn-co-submit:hover{background:var(--brown2);transform:translateY(-1px);box-shadow:0 8px 28px rgba(64,49,45,.35);}
+    .btn-co-submit:active{transform:translateY(0);}
+    .btn-co-submit:disabled{opacity:.65;cursor:not-allowed;transform:none;box-shadow:none;}
+    .co-submit-lock{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;color:var(--muted);margin-top:8px;padding-bottom:4px;}
+    .co-submit-lock svg{opacity:.5;}
+
+    /* ── ORDER SUMMARY (right col) ── */
+    .co-summary-panel{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;position:sticky;top:20px;box-shadow:0 2px 12px rgba(64,49,45,.07);}
+    .co-summary-hdr{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--cream);}
+    .co-summary-title{font-size:12px;font-weight:700;color:var(--brown);text-transform:uppercase;letter-spacing:.8px;}
+    .co-summary-body{padding:16px 18px;}
+    .co-sum-item{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px;}
+    .co-sum-img{width:50px;height:50px;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:var(--light);}
+    .co-sum-img img{width:100%;height:100%;object-fit:cover;}
+    .co-sum-name{font-size:12.5px;font-weight:600;color:var(--brown);line-height:1.35;flex:1;}
+    .co-sum-qty{font-size:11px;color:var(--muted);margin-top:2px;}
+    .co-sum-price{font-size:13px;font-weight:600;color:var(--brown);flex-shrink:0;}
+
+    /* ── TRUST ── */
+    .co-trust-row{display:flex;flex-direction:column;gap:7px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+    .co-trust-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);}
+    .co-trust-item svg{flex-shrink:0;}
+
+    /* ── TESTIMONIALS IN SUMMARY ── */
+    .co-testi-block{margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+    .co-testi-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .co-testi-item{padding:11px 13px;background:var(--cream);border-radius:10px;margin-bottom:8px;}
+    .co-testi-item:last-child{margin-bottom:0;}
+    .co-testi-stars{color:var(--star);font-size:11px;letter-spacing:.5px;margin-bottom:5px;}
+    .co-testi-text{font-size:12px;color:var(--brown);line-height:1.6;font-style:italic;margin-bottom:5px;}
+    .co-testi-name{font-size:11px;font-weight:600;color:var(--muted);}
+
+    /* ── VARIANT PILL ── */
+    .co-variant-pill{display:inline-flex;align-items:center;gap:5px;margin-top:6px;background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:3px 9px 3px 4px;}
+    .co-variant-swatch{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.15);flex-shrink:0;}
+    .co-variant-pill span{font-size:11px;font-weight:600;color:var(--brown);}
+    .co-variant-change{font-size:10.5px;color:var(--muted);margin-left:3px;text-decoration:underline;cursor:pointer;white-space:nowrap;}
+    .co-variant-change:hover{color:var(--rose);}
+
+    /* ── LOADING SPINNER ── */
+    .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ══ SUCCESS SCREEN ══ */
+    #successScreen{display:none;background:var(--bg);min-height:100vh;}
+
+    /* Hero banner */
+    .succ-banner{background:var(--brown);padding:52px 20px 80px;text-align:center;position:relative;overflow:hidden;}
+    .succ-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 0%,rgba(181,141,148,.25) 0%,transparent 65%);}
+    .succ-check-ring{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .1s both;}
+    @keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+    .succ-check-inner{width:52px;height:52px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;}
+    .succ-check-inner svg{width:26px;height:26px;}
+    .succ-banner-h{font-size:clamp(22px,5vw,30px);font-weight:700;color:#fff;margin-bottom:8px;position:relative;z-index:1;}
+    .succ-banner-p{font-size:14px;color:rgba(255,255,255,.65);position:relative;z-index:1;}
+    .succ-order-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:7px 18px;font-size:13px;font-weight:600;color:rgba(255,255,255,.9);margin-top:18px;position:relative;z-index:1;letter-spacing:.3px;}
+
+    /* Body */
+    .succ-body{max-width:600px;margin:-36px auto 0;padding:0 16px 80px;position:relative;z-index:2;}
+
+    /* Timeline */
+    .succ-timeline{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 12px rgba(64,49,45,.07);}
+    .succ-tl-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+    .succ-tl-item{display:flex;align-items:flex-start;gap:13px;padding-bottom:16px;position:relative;}
+    .succ-tl-item:last-child{padding-bottom:0;}
+    .succ-tl-item:not(:last-child)::after{content:'';position:absolute;left:14px;top:30px;bottom:0;width:1.5px;background:var(--border);}
+    .succ-tl-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;}
+    .succ-tl-dot.done{background:var(--green);color:#fff;}
+    .succ-tl-dot.pending{background:var(--cream);border:1.5px solid var(--border);color:var(--grey);}
+    .succ-tl-info{flex:1;padding-top:4px;}
+    .succ-tl-name{font-size:13.5px;font-weight:600;color:var(--brown);line-height:1.2;margin-bottom:3px;}
+    .succ-tl-sub{font-size:12px;color:var(--muted);}
+
+    /* Order summary card */
+    .succ-summary{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 12px rgba(64,49,45,.07);}
+    .succ-summary-hdr{padding:14px 18px;background:var(--cream);border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+    .succ-summary-body{padding:16px 18px;}
+    .succ-item{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+    .succ-item:last-of-type{border-bottom:none;}
+    .succ-item-img{width:44px;height:44px;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:var(--light);}
+    .succ-item-img img{width:100%;height:100%;object-fit:cover;}
+    .succ-item-name{flex:1;font-size:12.5px;font-weight:600;color:var(--brown);line-height:1.35;}
+    .succ-item-sub{font-size:11px;color:var(--muted);}
+    .succ-item-price{font-size:13px;font-weight:600;color:var(--brown);flex-shrink:0;}
+    .succ-totals{padding:12px 0 0;}
+    .succ-total-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px;}
+    .succ-total-row.final{font-size:16px;font-weight:700;color:var(--brown);margin-top:10px;padding-top:10px;border-top:1.5px solid var(--border);margin-bottom:0;}
+
+    /* CTAs */
+    .succ-ctas{display:flex;flex-direction:column;gap:10px;}
+    .btn-succ-primary{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--brown);color:#fff;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;border:none;cursor:pointer;transition:background .15s;box-shadow:0 4px 16px rgba(64,49,45,.22);}
+    .btn-succ-primary:hover{background:var(--brown2);}
+    .btn-succ-secondary{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--brown);font-family:'Figtree',sans-serif;font-size:14px;font-weight:600;padding:14px 24px;border-radius:12px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .15s,background .15s;}
+    .btn-succ-secondary:hover{border-color:var(--brown);background:var(--cream);}
+
+    /* ── MOBILE ── */
+    @media(max-width:800px){
+      .co-summary-panel{position:relative;top:0;order:-1;}
+    }
+    @media(max-width:520px){
+      .co-form-row{grid-template-columns:1fr;}
+      .co-payment-methods{grid-template-columns:1fr 1fr 1fr;}
+    }
+    @media(max-width:380px){
+      .co-payment-methods{grid-template-columns:1fr;}
+      .co-pm{flex-direction:row;padding:10px 14px;justify-content:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="co-header">
+  <div class="co-header-logo"><img src="https://img.funnelish.com/5973/886971/1754639162-Feel1_LOGO%20%282%29.png" alt="Feel1" style="height:28px;width:auto;filter:brightness(0) invert(1);display:block;"/></div>
+  <div class="co-header-secure">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Sichere Zahlung
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="co-progress">
+  <div class="co-steps">
+    <div class="co-step done" id="step1">
+      <div class="co-step-num">✓</div>
+      <span class="co-step-label">Warenkorb</span>
+    </div>
+    <div class="co-step-line"></div>
+    <div class="co-step active" id="step2">
+      <div class="co-step-num">2</div>
+      <span class="co-step-label">Lieferung</span>
+    </div>
+    <div class="co-step-line"></div>
+    <div class="co-step" id="step3">
+      <div class="co-step-num">3</div>
+      <span class="co-step-label">Zahlung</span>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT SCREEN -->
+<div id="checkoutScreen">
+<div class="co-wrap">
+
+  <!-- LEFT COL -->
+  <div class="co-left">
+
+    <!-- ORDER ITEMS -->
+    <div class="co-panel">
+      <div class="co-panel-hdr">
+        <div class="co-panel-hdr-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <div class="co-panel-title">Deine Bestellung</div>
+      </div>
+      <div class="co-panel-body">
+        <div id="orderItemsBody"></div>
+
+        <!-- UPSELL -->
+        <div class="co-upsell" id="upsellBlock">
+          <div class="co-upsell-img">
+            <img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Feel1 Rindertalg Creme"/>
+          </div>
+          <div class="co-upsell-info">
+            <div class="co-upsell-tag">🔥 Einmaliges Angebot – Nur heute</div>
+            <div class="co-upsell-name">Feel1 Rindertalg Pflegecreme</div>
+            <div class="co-upsell-desc">Tiefenwirksame Hautpflege mit reinem Rindertalg. Spendet Feuchtigkeit, beruhigt empfindliche Haut.</div>
+            <div class="co-upsell-price-row">
+              <span class="co-upsell-new">€29,99</span>
+              <span class="co-upsell-was">€59,99</span>
+              <span class="co-upsell-save">-50%</span>
+            </div>
+            <button class="co-upsell-btn" id="upsellBtn" onclick="addUpsell()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Zum Warenkorb hinzufügen
+            </button>
+            <div class="co-upsell-added-msg" id="upsellAddedMsg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+              Zum Warenkorb hinzugefügt
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SHIPPING FORM -->
+    <div class="co-panel">
+      <div class="co-panel-hdr">
+        <div class="co-panel-hdr-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="co-panel-title">Lieferadresse</div>
+      </div>
+      <div class="co-panel-body">
+        <div class="co-form-row full">
+          <div class="co-field">
+            <label class="co-label">E-Mail-Adresse</label>
+            <!-- cc-field: email -->
+            <input class="co-input" type="email" id="cc_email" name="email" placeholder="deine@email.de" autocomplete="email"/>
+          </div>
+        </div>
+        <div class="co-form-row">
+          <div class="co-field">
+            <label class="co-label">Vorname</label>
+            <!-- cc-field: first_name -->
+            <input class="co-input" type="text" id="cc_first_name" name="first_name" placeholder="Anna" autocomplete="given-name"/>
+          </div>
+          <div class="co-field">
+            <label class="co-label">Nachname</label>
+            <!-- cc-field: last_name -->
+            <input class="co-input" type="text" id="cc_last_name" name="last_name" placeholder="Müller" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="co-form-row full">
+          <div class="co-field">
+            <label class="co-label">Straße &amp; Hausnummer</label>
+            <!-- cc-field: address1 -->
+            <input class="co-input" type="text" id="cc_address1" name="address1" placeholder="Musterstraße 12" autocomplete="address-line1"/>
+          </div>
+        </div>
+        <div class="co-form-row full">
+          <div class="co-field">
+            <label class="co-label">Adresszusatz (optional)</label>
+            <!-- cc-field: address2 -->
+            <input class="co-input" type="text" id="cc_address2" name="address2" placeholder="Wohnung, Etage …" autocomplete="address-line2"/>
+          </div>
+        </div>
+        <div class="co-form-row">
+          <div class="co-field">
+            <label class="co-label">Postleitzahl</label>
+            <!-- cc-field: zip -->
+            <input class="co-input" type="text" id="cc_zip" name="zip" placeholder="12345" autocomplete="postal-code" maxlength="5"/>
+          </div>
+          <div class="co-field">
+            <label class="co-label">Stadt</label>
+            <!-- cc-field: city -->
+            <input class="co-input" type="text" id="cc_city" name="city" placeholder="Berlin" autocomplete="address-level2"/>
+          </div>
+        </div>
+        <div class="co-form-row full">
+          <div class="co-field">
+            <label class="co-label">Land</label>
+            <!-- cc-field: country -->
+            <select class="co-input co-select" id="cc_country" name="country" autocomplete="country">
+              <option value="DE" selected>🇩🇪 Deutschland</option>
+              <option value="AT">🇦🇹 Österreich</option>
+              <option value="CH">🇨🇭 Schweiz</option>
+            </select>
+          </div>
+        </div>
+        <div class="co-form-row full">
+          <div class="co-field">
+            <label class="co-label">Telefon (für Versandbenachrichtigung)</label>
+            <!-- cc-field: phone -->
+            <input class="co-input" type="tel" id="cc_phone" name="phone" placeholder="+49 170 1234567" autocomplete="tel"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="co-panel">
+      <div class="co-panel-hdr">
+        <div class="co-panel-hdr-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="co-panel-title">Zahlungsmethode</div>
+      </div>
+      <div class="co-panel-body">
+        <div class="co-payment-methods">
+          <div class="co-pm active" onclick="selectPm(this,'card')" data-pm="card">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Kreditkarte
+          </div>
+          <div class="co-pm" onclick="selectPm(this,'paypal')" data-pm="paypal">
+            <svg width="16" height="12" viewBox="0 0 60 20" fill="none"><text x="2" y="15" font-family="Arial" font-size="13" font-weight="700" fill="#003087">Pay</text><text x="22" y="15" font-family="Arial" font-size="13" font-weight="700" fill="#009cde">Pal</text></svg>
+          </div>
+          <div class="co-pm" onclick="selectPm(this,'klarna')" data-pm="klarna">
+            <svg width="50" height="14" viewBox="0 0 50 14"><rect width="50" height="14" rx="3" fill="#FFB3C7"/><text x="8" y="11" font-family="Arial" font-size="9" font-weight="700" fill="#17120E">klarna</text></svg>
+          </div>
+        </div>
+
+        <!-- Card Fields -->
+        <div id="pmCard">
+          <div class="co-form-row full" style="margin-bottom:12px;">
+            <div class="co-field">
+              <label class="co-label">Karteninhaber</label>
+              <!-- cc-field: cc_name -->
+              <input class="co-input" type="text" id="cc_name" name="cc_name" placeholder="Anna Müller" autocomplete="cc-name"/>
+            </div>
+          </div>
+          <div class="co-form-row full" style="margin-bottom:12px;">
+            <div class="co-field co-card-row">
+              <label class="co-label">Kartennummer</label>
+              <!-- cc-field: cc_number -->
+              <input class="co-input" type="text" id="cc_number" name="cc_number" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number" oninput="formatCard(this)"/>
+              <div class="co-card-icons">
+                <svg width="30" height="20" viewBox="0 0 48 32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><path d="M18 21H15L17 11H20L18 21ZM13 11L10 18L9.7 16.5L8.6 12C8.6 12 8.5 11 7.3 11H3.5L3.4 11.2C3.4 11.2 4.6 11.4 6 12.4L8.5 21H11.5L16 11H13ZM35 21H37.5L35.5 11H33.3C32.4 11 32.1 11.7 32.1 11.7L28.4 21H31.2L31.8 19.3H35.2L35 21ZM32.5 17.3L33.8 13.7L34.5 17.3H32.5ZM29 12.8L29.4 11C29.4 11 28.3 10.7 27.2 10.7C25.9 10.7 23 11.3 23 13.7C23 15.9 26.2 15.9 26.2 17.1C26.2 18.3 23.3 18.1 22.2 17.1L21.8 19C21.8 19 22.9 19.5 24.4 19.5C25.9 19.5 29.2 18.7 29.2 16.1C29.2 13.4 26 13.2 26 12.1C26 11 28.3 11.1 29 12.8Z" fill="white"/></svg>
+                <svg width="28" height="18" viewBox="0 0 38 26"><rect width="38" height="26" rx="3" fill="#252525"/><circle cx="15" cy="13" r="8" fill="#EB001B"/><circle cx="23" cy="13" r="8" fill="#F79E1B"/><path d="M19 7a8 8 0 010 12A8 8 0 0119 7Z" fill="#FF5F00"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="co-form-row" style="margin-bottom:0;">
+            <div class="co-field">
+              <label class="co-label">Gültig bis (MM/JJ)</label>
+              <!-- cc-field: cc_exp -->
+              <input class="co-input" type="text" id="cc_exp" name="cc_exp" placeholder="MM/JJ" maxlength="5" autocomplete="cc-exp" oninput="formatExp(this)"/>
+            </div>
+            <div class="co-field">
+              <label class="co-label">CVV / CVC</label>
+              <!-- cc-field: cc_cvv -->
+              <input class="co-input" type="text" id="cc_cvv" name="cc_cvv" placeholder="123" maxlength="4" autocomplete="cc-csc"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- PayPal placeholder -->
+        <div id="pmPaypal" style="display:none;">
+          <div style="background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;">
+            <div style="font-size:13.5px;color:var(--muted);margin-bottom:12px;">Du wirst nach dem Klick zu PayPal weitergeleitet, um die Zahlung abzuschließen.</div>
+            <div style="font-size:24px;font-weight:700;letter-spacing:-1px;"><span style="color:#003087">Pay</span><span style="color:#009cde">Pal</span></div>
+          </div>
+        </div>
+
+        <!-- Klarna placeholder -->
+        <div id="pmKlarna" style="display:none;">
+          <div style="background:#FFF0F5;border:1px solid #FFB3C7;border-radius:10px;padding:20px;text-align:center;">
+            <div style="font-size:13.5px;color:var(--muted);margin-bottom:8px;">Jetzt kaufen, später bezahlen – in 3 zinsfreien Raten.</div>
+            <div style="background:#FFB3C7;display:inline-block;padding:4px 14px;border-radius:4px;font-size:13px;font-weight:700;color:#17120E;">klarna</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="co-submit-wrap">
+      <button class="btn-co-submit" id="submitBtn" onclick="submitOrder()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Jetzt kaufen – <span id="submitTotal">€39,99</span>
+      </button>
+      <div class="co-submit-lock">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        SSL-verschlüsselt · 30-Tage-Garantie · Keine versteckten Kosten
+      </div>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- RIGHT COL: summary -->
+  <div class="co-right">
+    <div class="co-summary-panel">
+      <div class="co-summary-hdr">
+        <div class="co-summary-title">Bestellübersicht</div>
+      </div>
+      <div class="co-summary-body">
+
+        <div id="sumItems">
+          <div id="sumItemsMain"></div>
+          <div class="co-sum-item" id="sumUpsell" style="display:none;">
+            <div class="co-sum-img"><img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Creme"/></div>
+            <div style="flex:1;min-width:0;">
+              <div class="co-sum-name">Rindertalg Pflegecreme</div>
+              <div class="co-sum-qty">Menge: 1</div>
+            </div>
+            <div class="co-sum-price">€29,99</div>
+          </div>
+        </div>
+
+        <div class="co-divider"></div>
+
+        <div class="co-total-row">
+          <span>Zwischensumme</span>
+          <span id="sumSubtotal">€39,99</span>
+        </div>
+        <div class="co-total-row">
+          <span>Versand</span>
+          <span class="co-shipping-badge">Kostenlos</span>
+        </div>
+        <div class="co-total-row savings">
+          <span>Du sparst</span>
+          <span id="sumSavings">€20,01</span>
+        </div>
+        <div class="co-divider"></div>
+        <div class="co-total-row final">
+          <span>Gesamt</span>
+          <span id="sumTotal">€39,99</span>
+        </div>
+
+        <!-- TRUST -->
+        <div class="co-trust-row">
+          <div class="co-trust-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12L11 14L15 10M20 12C20 16.46 14.54 19.69 12.64 20.68C12.44 20.79 12.33 20.84 12.19 20.87C12.08 20.89 11.92 20.89 11.81 20.87C11.67 20.84 11.56 20.79 11.36 20.68C9.46 19.69 4 16.46 4 12V8.22C4 7.42 4 7.02 4.13 6.67C4.25 6.37 4.43 6.1 4.68 5.89C4.95 5.64 5.33 5.5 6.08 5.22L11.44 3.21C11.65 3.13 11.75 3.09 11.86 3.08C11.95 3.06 12.05 3.06 12.14 3.08C12.25 3.09 12.35 3.13 12.56 3.21L17.92 5.22C18.67 5.5 19.05 5.64 19.32 5.89C19.57 6.1 19.75 6.37 19.87 6.67C20 7.02 20 7.42 20 8.22V12Z"/></svg>
+            30 Tage Geld-zurück-Garantie
+          </div>
+          <div class="co-trust-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            SSL-verschlüsselt · 256-bit
+          </div>
+          <div class="co-trust-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Versand in 1–3 Werktagen
+          </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="co-testi-block">
+          <div class="co-testi-lbl">Was andere sagen</div>
+          <div class="co-testi-item">
+            <div class="co-testi-stars">★★★★★</div>
+            <div class="co-testi-text">„Unglaublich wie einfach das geht – in 2 Minuten perfekte Nägel. Ich bin süchtig!"</div>
+            <div class="co-testi-name">– Laura M., verifizierte Käuferin</div>
+          </div>
+          <div class="co-testi-item">
+            <div class="co-testi-stars">★★★★★</div>
+            <div class="co-testi-text">„Hält bei mir locker 10 Tage ohne Abplatzer. Kein Vergleich zu normalem Nagellack."</div>
+            <div class="co-testi-name">– Sandra K., verifizierte Käuferin</div>
+          </div>
+          <div class="co-testi-item">
+            <div class="co-testi-stars">★★★★★</div>
+            <div class="co-testi-text">„Super schnell trocken und riecht nicht komisch. Bin wirklich begeistert!"</div>
+            <div class="co-testi-name">– Mia W., verifizierte Käuferin</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /right -->
+
+</div><!-- /co-wrap -->
+</div><!-- /checkoutScreen -->
+
+<!-- SUCCESS SCREEN -->
+<div id="successScreen">
+
+  <!-- Hero banner -->
+  <div class="succ-banner">
+    <div class="succ-check-ring">
+      <div class="succ-check-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+    </div>
+    <h1 class="succ-banner-h">Bestellung aufgegeben!</h1>
+    <p class="succ-banner-p">Deine Bestätigung kommt gleich per E-Mail.</p>
+    <div class="succ-order-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+      Bestellnummer: <strong id="orderNum">#F1-00000</strong>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="succ-body">
+
+    <!-- What happens next -->
+    <div class="succ-timeline">
+      <div class="succ-tl-title">Was passiert als nächstes</div>
+      <div class="succ-tl-item">
+        <div class="succ-tl-dot done">✓</div>
+        <div class="succ-tl-info">
+          <div class="succ-tl-name">Bestellung bestätigt</div>
+          <div class="succ-tl-sub">Deine Bestellung wird gerade bearbeitet.</div>
+        </div>
+      </div>
+      <div class="succ-tl-item">
+        <div class="succ-tl-dot pending">2</div>
+        <div class="succ-tl-info">
+          <div class="succ-tl-name">Versandvorbereitung</div>
+          <div class="succ-tl-sub">Dein Paket wird in 1–2 Werktagen versendet.</div>
+        </div>
+      </div>
+      <div class="succ-tl-item">
+        <div class="succ-tl-dot pending">3</div>
+        <div class="succ-tl-info">
+          <div class="succ-tl-name">Zustellung</div>
+          <div class="succ-tl-sub">Lieferung in 1–3 Werktagen nach dem Versand.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order summary -->
+    <div class="succ-summary">
+      <div class="succ-summary-hdr">Deine Bestellung</div>
+      <div class="succ-summary-body">
+        <div id="successItems"></div>
+        <div class="succ-totals">
+          <div class="succ-total-row"><span>Versand</span><span style="color:var(--green);font-weight:600;">Kostenlos</span></div>
+          <div class="succ-total-row"><span>Du sparst</span><span style="color:var(--green);font-weight:600;" id="successSavings">€20,01</span></div>
+          <div class="succ-total-row final"><span>Gesamt</span><span id="successTotal">€39,99</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="succ-ctas">
+      <a href="feel1-nagelstift-landing.html" class="btn-succ-secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Zurück zum Shop
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── VARIANT DATA (mirrors landing page) ──
+  var swatchMap = {
+    rose:    'conic-gradient(#6B1B35 0deg 72deg,#C12836 72deg 144deg,#D4527A 144deg 216deg,#E899B0 216deg 288deg,#F7C8D8 288deg 360deg)',
+    violett: 'conic-gradient(#4A2060 0deg 72deg,#7B3EA8 72deg 144deg,#A569BD 144deg 216deg,#C8A0D8 216deg 288deg,#E8DAEF 288deg 360deg)',
+    pastell: 'conic-gradient(#9B89C0 0deg 72deg,#8EC8A0 72deg 144deg,#F5C6D0 144deg 216deg,#C8B8DC 216deg 288deg,#B0D8C0 288deg 360deg)',
+    apfel:   'conic-gradient(#C84020 0deg 72deg,#8B6030 72deg 144deg,#E01020 144deg 216deg,#1E5C30 216deg 288deg,#88BB55 288deg 360deg)',
+    lenz:    'conic-gradient(#880020 0deg 72deg,#4A1A68 72deg 144deg,#1A5C2A 144deg 216deg,#7880C8 216deg 288deg,#D84898 288deg 360deg)'
+  };
+
+  // ── READ CART FROM SESSION ──
+  var cartItems = [];
+  var upsellAdded = false;
+  var UNIT = 39.99;
+  var UNIT_OLD = 60.00;
+  var UPSELL = 29.99;
+  var UPSELL_OLD = 59.99;
+
+  // legacy single-item fallbacks
+  var selectedVariant = 'rose';
+  var variantName     = 'Rose Set';
+  var variantImg      = 'Nail%20Polish%20DE/main-rose.jpg';
+  try {
+    var stored = sessionStorage.getItem('f1_items');
+    if(stored) cartItems = JSON.parse(stored);
+    selectedVariant = sessionStorage.getItem('f1_variant')      || 'rose';
+    variantName     = sessionStorage.getItem('f1_variant_name') || 'Rose Set';
+    variantImg      = sessionStorage.getItem('f1_variant_img')  || 'Nail%20Polish%20DE/main-rose.jpg';
+    if(!cartItems.length){
+      var legacyQty = parseInt(sessionStorage.getItem('f1_qty')||'1',10)||1;
+      cartItems = [{key:selectedVariant, qty:legacyQty}];
+    }
+    if(sessionStorage.getItem('f1_upsell')==='1') upsellAdded = true;
+  } catch(e) { cartItems = [{key:'rose', qty:1}]; }
+
+  function fmt(n){ return '€' + n.toFixed(2).replace('.',','); }
+
+  // ── RENDER ORDER ITEMS ── (left col + right summary)
+  function renderOrderItems(){
+    var leftHtml = '', sumHtml = '';
+    cartItems.forEach(function(item, idx){
+      var v = swatchMap[item.key] ? {swatch:swatchMap[item.key], name:variantNames[item.key], img:variantImgs[item.key]} : {swatch:swatchMap.rose, name:'Rose Set', img:'Nail%20Polish%20DE/main-rose.jpg'};
+      var linePrice = item.qty * UNIT;
+      // Left col items (first item has qty controls, others are simplified)
+      leftHtml += '<div class="co-item" style="'+(idx>0?'margin-top:14px;padding-top:14px;border-top:1px solid var(--border);':'')+'">'
+        + '<div class="co-item-img"><img src="'+v.img+'" alt="Feel1 Nagellackstift"/></div>'
+        + '<div class="co-item-info">'
+        + '<div class="co-item-name">Feel1 Nagellackstift Set</div>'
+        + '<div class="co-item-sub">5 Stifte + Überlack + Unterlack</div>'
+        + '<div class="co-variant-pill">'
+        + '<div class="co-variant-swatch" style="background:'+v.swatch+'"></div>'
+        + '<span>'+v.name+'</span>'
+        + '<a class="co-variant-change" href="feel1-nagelstift-landing.html">ändern</a>'
+        + '</div>'
+        + '<div class="co-qty" style="margin-top:8px;">'
+        + '<button class="co-qty-btn" onclick="changeItemQty('+idx+',-1)">−</button>'
+        + '<div class="co-qty-val" id="qtyVal_'+idx+'">'+item.qty+'</div>'
+        + '<button class="co-qty-btn" onclick="changeItemQty('+idx+',1)">+</button>'
+        + '</div>'
+        + '</div>'
+        + '<div class="co-item-right">'
+        + '<div class="co-item-price" id="itemPrice_'+idx+'">'+fmt(linePrice)+'</div>'
+        + '<div class="co-item-old">'+fmt(item.qty*UNIT_OLD)+'</div>'
+        + '</div></div>';
+      // Right summary
+      sumHtml += '<div class="co-sum-item">'
+        + '<div class="co-sum-img"><img src="'+v.img+'" alt="Feel1"/></div>'
+        + '<div style="flex:1;min-width:0;">'
+        + '<div class="co-sum-name">Feel1 Nagellackstift</div>'
+        + '<div class="co-sum-qty">'+v.name+' · Menge: <span id="sumQty_'+idx+'">'+item.qty+'</span></div>'
+        + '</div>'
+        + '<div class="co-sum-price" id="sumPrice_'+idx+'">'+fmt(linePrice)+'</div>'
+        + '</div>';
+    });
+    document.getElementById('orderItemsBody').innerHTML = leftHtml;
+    document.getElementById('sumItemsMain').innerHTML = sumHtml;
+    // upsell summary row
+    document.getElementById('sumUpsell').style.display = upsellAdded ? 'flex' : 'none';
+  }
+
+  // variant lookup tables
+  var variantNames = {rose:'Rose Set',violett:'Violett Set',pastell:'Pastell Set',apfel:'Apfel Set',lenz:'Lenz Set'};
+  var variantImgs  = {rose:'Nail%20Polish%20DE/main-rose.jpg',violett:'Nail%20Polish%20DE/main-violett.jpg',pastell:'Nail%20Polish%20DE/main-pastell.jpg',apfel:'Nail%20Polish%20DE/main-apfel.jpg',lenz:'Nail%20Polish%20DE/main-lenz.jpg'};
+
+  // ── PER-ITEM QTY ──
+  function changeItemQty(idx, d){
+    cartItems[idx].qty = Math.max(1, Math.min(10, cartItems[idx].qty + d));
+    renderOrderItems();
+    updateTotals();
+  }
+
+  // ── UPSELL ──
+  function addUpsell(){
+    if(upsellAdded) return;
+    upsellAdded = true;
+    var btn = document.getElementById('upsellBtn');
+    btn.classList.add('added');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Hinzugefügt';
+    btn.onclick = null;
+    document.getElementById('upsellAddedMsg').classList.add('show');
+    document.getElementById('sumUpsell').style.display = 'flex';
+    updateTotals();
+  }
+
+  // ── TOTALS ──
+  function updateTotals(){
+    var main    = cartItems.reduce(function(s,i){return s+i.qty*UNIT;},0);
+    var mainOld = cartItems.reduce(function(s,i){return s+i.qty*UNIT_OLD;},0);
+    var total    = main + (upsellAdded ? UPSELL : 0);
+    var totalOld = mainOld + (upsellAdded ? UPSELL_OLD : 0);
+    var savings  = totalOld - total;
+    // update per-item prices
+    cartItems.forEach(function(item,idx){
+      var p = document.getElementById('itemPrice_'+idx);
+      if(p) p.textContent = fmt(item.qty*UNIT);
+      var q = document.getElementById('sumQty_'+idx);
+      if(q) q.textContent = item.qty;
+      var sp = document.getElementById('sumPrice_'+idx);
+      if(sp) sp.textContent = fmt(item.qty*UNIT);
+    });
+    document.getElementById('sumSubtotal').textContent  = fmt(total);
+    document.getElementById('sumSavings').textContent   = fmt(savings);
+    document.getElementById('sumTotal').textContent     = fmt(total);
+    document.getElementById('submitTotal').textContent  = fmt(total);
+  }
+
+  // legacy single-item qty shim (kept for compatibility)
+  var qty = cartItems.length ? cartItems[0].qty : 1;
+  function changeQty(d){ changeItemQty(0,d); }
+
+  // ── PAYMENT METHOD ──
+  function selectPm(el, pm){
+    document.querySelectorAll('.co-pm').forEach(function(e){ e.classList.remove('active'); });
+    el.classList.add('active');
+    document.getElementById('pmCard').style.display = pm === 'card' ? 'block' : 'none';
+    document.getElementById('pmPaypal').style.display = pm === 'paypal' ? 'block' : 'none';
+    document.getElementById('pmKlarna').style.display = pm === 'klarna' ? 'block' : 'none';
+  }
+
+  // ── CARD FORMATTING ──
+  function formatCard(el){
+    var v = el.value.replace(/\D/g,'').substring(0,16);
+    el.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+  function formatExp(el){
+    var v = el.value.replace(/\D/g,'');
+    if(v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+    el.value = v;
+  }
+
+  // ── VALIDATION (skipped for preview — always returns true) ──
+  function validate(){
+    // PREVIEW MODE: no validation required
+    return true;
+  }
+
+  // ── SUBMIT ──
+  function submitOrder(){
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Bestellung wird verarbeitet …';
+
+    setTimeout(function(){
+      var orderNum = '#F1-' + Math.floor(10000 + Math.random()*90000);
+      document.getElementById('orderNum').textContent = orderNum;
+
+      var main = qty * UNIT;
+      var mainOld = qty * UNIT_OLD;
+      var total = main + (upsellAdded ? UPSELL : 0);
+      var totalOld = mainOld + (upsellAdded ? UPSELL * 2 : 0);
+      var savings = totalOld - total;
+
+      // Build success items
+      var items = '';
+      cartItems.forEach(function(item){
+        var img  = variantImgs[item.key]  || variantImg;
+        var name = variantNames[item.key] || variantName;
+        var lp   = item.qty * UNIT;
+        items += '<div class="succ-item">'
+          + '<div class="succ-item-img"><img src="'+img+'" alt="Feel1"/></div>'
+          + '<div style="flex:1;min-width:0;"><div class="succ-item-name">Feel1 Nagellackstift Set</div>'
+          + '<div class="succ-item-sub">'+name+' · Menge: '+item.qty+'</div></div>'
+          + '<div class="succ-item-price">'+fmt(lp)+'</div></div>';
+      });
+      if(upsellAdded){
+        items += '<div class="succ-item">'
+          + '<div class="succ-item-img"><img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Creme"/></div>'
+          + '<div style="flex:1;min-width:0;"><div class="succ-item-name">Rindertalg Pflegecreme</div>'
+          + '<div class="succ-item-sub">Menge: 1</div></div>'
+          + '<div class="succ-item-price">'+fmt(UPSELL)+'</div></div>';
+      }
+      document.getElementById('successItems').innerHTML = items;
+      document.getElementById('successTotal').textContent = fmt(total);
+      document.getElementById('successSavings').textContent = fmt(savings);
+
+      // Progress: all done
+      document.getElementById('step2').className = 'co-step done';
+      document.getElementById('step2').querySelector('.co-step-num').textContent = '✓';
+      document.getElementById('step3').className = 'co-step done';
+      document.getElementById('step3').querySelector('.co-step-num').textContent = '✓';
+
+      document.getElementById('checkoutScreen').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({top:0,behavior:'smooth'});
+
+      // TODO: Checkout Champ integration
+      // ccSubmitOrder({ order_num: orderNum, total: total, ... });
+
+    }, 2200);
+  }
+
+  // ── INIT ──
+  // Pre-apply upsell if carried from cart
+  if(upsellAdded) {
+    var btn = document.getElementById('upsellBtn');
+    if(btn){ btn.classList.add('added'); btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Hinzugefügt'; btn.onclick=null; }
+    var msg = document.getElementById('upsellAddedMsg'); if(msg) msg.classList.add('show');
+    var su = document.getElementById('sumUpsell'); if(su) su.style.display='flex';
+  }
+  renderOrderItems();
+  updateTotals();
+</script>
+</body>
+</html>

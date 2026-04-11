@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Feel1 Nagellackstift – Perfekte Nägel in Minuten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brown:  #40312D;
+      --brown2: #5a4540;
+      --rose:   #B58D94;
+      --rose-bg:#F5ECEE;
+      --cream:  #F9F6F2;
+      --light:  #F2EAE2;
+      --pale:   #E2D8CE;
+      --border: #E8E0D6;
+      --line:   #EDE5DC;
+      --muted:  #7A6860;
+      --grey:   #A89890;
+      --star:   #F5A623;
+      --white:  #FFFFFF;
+      --bg:     #FDFAF7;
+      --green:  #3E8A5A;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Figtree',sans-serif;background:var(--bg);color:var(--brown);font-size:15px;line-height:1.6;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block;max-width:100%;height:auto;}
+
+    /* ── ANNOUNCEMENT ── */
+    .ann{background:var(--brown);color:#ddd4cc;font-size:12.5px;font-weight:500;text-align:center;padding:10px 20px;letter-spacing:.2px;}
+    .ann strong{color:#fff;}
+    .ann-pill{display:inline-block;background:var(--rose);color:#fff;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-right:8px;vertical-align:middle;}
+    @media(max-width:480px){ .ann{font-size:11.5px;padding:10px 12px;} }
+
+    /* ── NAV ── */
+    .nav{background:var(--white);border-bottom:1px solid var(--border);position:relative;z-index:200;}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:center;}
+    .nav-logo img{width:100px;height:auto;}
+    .nav-logo-fb{font-family:'Figtree',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.5px;color:var(--brown);display:none;align-items:center;}
+    .nav-logo-fb em{color:var(--rose);font-style:normal;}
+    .nav-logo-fb span{width:5px;height:5px;background:var(--rose);border-radius:50%;margin-left:2px;margin-bottom:3px;display:inline-block;}
+    .nav-trust{display:flex;gap:18px;font-size:12.5px;font-weight:600;color:var(--muted);}
+    .nav-trust span{display:flex;align-items:center;gap:4px;white-space:nowrap;}
+    @media(max-width:600px){.nav-trust{display:none;}}
+    @media(max-width:480px){.nav-inner{padding:0 16px;} .nav-logo img{width:90px;}}
+
+    /* ══ HERO ══ */
+    .hero-wrap{background:var(--white);border-bottom:1px solid var(--border);}
+    .hero{max-width:1100px;margin:0 auto;padding:36px 28px 52px;display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:start;}
+
+    /* gallery sticky */
+    .gal-col{position:sticky;top:20px;align-self:start;}
+    @media(max-width:800px){.gal-col{position:relative;top:auto;}}
+    /* gallery */
+    .gal-main{position:relative;border-radius:4px;overflow:hidden;background:var(--light);aspect-ratio:1/1.05;margin-bottom:10px;}
+    .gal-main img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s;}
+    .gal-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:1px solid var(--border);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:var(--brown);box-shadow:0 2px 8px rgba(0,0,0,.1);transition:background .15s;z-index:2;}
+    .gal-arrow:hover{background:#fff;}
+    .gal-prev{left:10px;}.gal-next{right:10px;}
+    .gal-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+    .gal-thumb{aspect-ratio:1;border-radius:3px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .15s;background:var(--light);}
+    .gal-thumb.active{border-color:var(--rose);}
+    .gal-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+
+    /* product form */
+    .pf-badge{display:inline-block;background:var(--light);color:var(--muted);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:12px;}
+    .pf-title{font-size:clamp(24px,3vw,36px);font-weight:600;line-height:1.15;color:var(--brown);margin-bottom:10px;letter-spacing:-.5px;}
+    .pf-rating{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+    .pf-stars{color:var(--star);font-size:15px;letter-spacing:1px;}
+    .pf-rtxt{font-size:13px;color:var(--muted);font-weight:500;}
+    .pf-rtxt a{color:var(--muted);font-weight:500;text-underline-offset:2px;}
+    .pf-hr{border:none;border-top:1px solid var(--border);margin:14px 0;}
+
+    /* price */
+    .pf-price-wrap{background:var(--cream);border-radius:4px;padding:14px 16px;margin-bottom:14px;}
+    .pf-price-old{font-size:13px;color:var(--grey);font-weight:400;margin-bottom:4px;}
+    .pf-price-old del{text-decoration:line-through;}
+    .pf-price-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+    .pf-price-new{font-size:36px;font-weight:600;color:var(--brown);line-height:1;}
+    .pf-price-save{background:#D21D1D;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:2px;letter-spacing:.3px;}
+    .pf-urgency{font-size:12px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:5px;}
+
+    /* short desc */
+    .pf-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:14px;}
+
+    /* checklist USPs */
+    .pf-checks{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+    .pf-checks li{font-size:14px;color:var(--brown);line-height:1.4;display:flex;align-items:flex-start;gap:9px;}
+    .pf-checks li::before{content:'✓';color:var(--green);font-weight:600;font-size:14px;flex-shrink:0;margin-top:1px;}
+
+    /* trust box */
+    .pf-trust{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:12px 14px;margin-top:12px;}
+    .pf-trust-ico{font-size:22px;flex-shrink:0;}
+    .pf-trust-text{font-size:12.5px;color:var(--muted);line-height:1.45;}
+    .pf-trust-text strong{color:var(--brown);font-weight:600;display:block;margin-bottom:1px;}
+
+    /* ── VARIANT PICKER ── */
+    .vp-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .vp-label strong{color:var(--brown);font-size:13px;letter-spacing:0;text-transform:none;font-weight:600;}
+    .vp-grid{display:flex;flex-direction:row;gap:10px;margin-bottom:20px;padding-top:28px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .vp-grid::-webkit-scrollbar{display:none;}
+    .vp-grid input[type=radio]{display:none;}
+    .vp-grid label{
+      flex:1 0 56px;display:flex;flex-direction:column;align-items:center;gap:8px;
+      border:1.5px solid var(--border);border-radius:16px;padding:28px 8px 12px;
+      cursor:pointer;background:var(--light);transition:all .35s cubic-bezier(.165,.84,.44,1);
+      position:relative;text-align:center;min-width:56px;
+    }
+    .vp-grid label:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(64,49,45,.12);border-color:var(--rose);background:#FDFBFA;}
+    .vp-grid input[type=radio]:checked+label{border-color:var(--rose);background:var(--rose-bg);box-shadow:0 8px 20px rgba(181,141,148,.25);}
+
+    /* floating swatch */
+    .vp-swatch{width:44px;height:44px;border-radius:50%;position:absolute;top:-22px;left:50%;transform:translateX(-50%);box-shadow:0 6px 16px rgba(0,0,0,.18);border:3px solid #fff;transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+    .vp-grid label:hover .vp-swatch{transform:translateX(-50%) scale(1.12);}
+    .sw-rose   {background:conic-gradient(#6B1B35 0deg 72deg,#C12836 72deg 144deg,#D4527A 144deg 216deg,#E899B0 216deg 288deg,#F7C8D8 288deg 360deg);}
+    .sw-violett{background:conic-gradient(#4A2060 0deg 72deg,#7B3EA8 72deg 144deg,#A569BD 144deg 216deg,#C8A0D8 216deg 288deg,#E8DAEF 288deg 360deg);}
+    .sw-pastell{background:conic-gradient(#9B89C0 0deg 72deg,#8EC8A0 72deg 144deg,#F5C6D0 144deg 216deg,#C8B8DC 216deg 288deg,#B0D8C0 288deg 360deg);}
+    .sw-apfel  {background:conic-gradient(#C84020 0deg 72deg,#8B6030 72deg 144deg,#E01020 144deg 216deg,#1E5C30 216deg 288deg,#88BB55 288deg 360deg);}
+    .sw-lenz   {background:conic-gradient(#880020 0deg 72deg,#4A1A68 72deg 144deg,#1A5C2A 144deg 216deg,#7880C8 216deg 288deg,#D84898 288deg 360deg);}
+
+    .vp-name{font-size:12px;font-weight:600;color:var(--brown);line-height:1.2;margin-top:2px;}
+    .vp-desc{font-size:10px;color:var(--muted);line-height:1.3;}
+
+    /* ATC */
+    /* hero qty + atc row */
+    .pf-atc-row{display:flex;gap:10px;align-items:stretch;margin-bottom:10px;}
+    .pf-hero-qty{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:3px;overflow:hidden;flex-shrink:0;}
+    .pf-hero-qty-btn{width:36px;height:100%;background:var(--cream);border:none;cursor:pointer;font-size:18px;font-weight:400;color:var(--brown);display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0;}
+    .pf-hero-qty-btn:hover{background:var(--light);}
+    .pf-hero-qty-val{width:34px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--brown);border-left:1px solid var(--border);border-right:1px solid var(--border);}
+    .btn-atc{flex:1;background:var(--brown);color:#f5f1eb;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;letter-spacing:.5px;padding:17px 20px;border:none;border-radius:3px;cursor:pointer;text-align:center;transition:background .2s,transform .1s;box-shadow:0 4px 14px rgba(64,49,45,.22);}
+    .btn-atc:hover{background:var(--brown2);transform:translateY(-1px);}
+    .pf-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:10px;color:var(--muted);font-size:11.5px;font-weight:500;}
+    .pf-secure svg{flex-shrink:0;opacity:.55;}
+    .pf-includes{margin-top:12px;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:11px 14px;}
+    .pf-inc-inner{display:flex;align-items:center;gap:12px;}
+    .pf-inc-content{flex:1;min-width:0;}
+    .pf-inc-photo{width:100px;height:90px;flex-shrink:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 10px rgba(64,49,45,.1);}
+    .pf-inc-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+    .pf-inc-label{font-size:11.5px;font-weight:600;color:var(--rose);margin-bottom:7px;letter-spacing:.2px;}
+    .pf-inc-items{display:flex;flex-direction:column;gap:5px;}
+    .pf-inc-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);font-weight:500;}
+
+    /* Hero Responsive */
+    @media(max-width:800px){
+      .hero{grid-template-columns:1fr;gap:28px;padding:24px 20px 36px;}
+      .pf-title{font-size:28px;}
+    }
+    @media(max-width:480px){
+      .hero{padding:20px 16px 36px;}
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:0;}
+    .trust-track{display:flex;width:max-content;animation:marquee 28s linear infinite;}
+    .trust-track:hover{animation-play-state:paused;}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .ti{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--brown);padding:16px 32px;white-space:nowrap;flex-shrink:0;}
+    .ti-sep{display:none;}
+    .ti svg{width:18px;height:18px;flex-shrink:0;}
+
+    /* ── SECTIONS ── */
+    .sec{padding:72px 28px;overflow:hidden;}
+    @media(max-width:600px){.sec{padding:52px 16px;}}
+    .sec-white{background:var(--white);}
+    .sec-cream{background:var(--cream);}
+    .sec-light{background:var(--light);}
+    .sec-dark{background:var(--brown);}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--rose);text-align:center;margin-bottom:10px;}
+    .sh{font-size:clamp(22px,4vw,34px);font-weight:600;line-height:1.2;color:var(--brown);text-align:center;letter-spacing:-.4px;margin-bottom:10px;}
+    .sd{font-size:15px;color:var(--muted);text-align:center;max-width:500px;margin:0 auto 48px;font-weight:400;line-height:1.7;}
+
+    @media(max-width: 768px){
+      .sec{padding:48px 20px;}
+      .sd{margin-bottom:32px;}
+    }
+    @media(max-width: 480px){
+      .sec{padding:40px 16px;}
+    }
+
+    /* ── DESCRIPTION BAND ── */
+    .desc-band{background:var(--white);border-bottom:1px solid var(--border);padding:56px 28px;}
+    .desc-inner{max-width:680px;margin:0 auto;text-align:center;}
+    .desc-h{font-size:clamp(20px,3.5vw,30px);font-weight:600;color:var(--brown);line-height:1.25;margin-bottom:16px;letter-spacing:-.3px;}
+    .desc-p{font-size:15px;color:var(--muted);line-height:1.75;}
+    .desc-usps{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px auto 0;max-width:560px;text-align:left;}
+    .desc-usp{display:flex;align-items:flex-start;gap:12px;}
+    .desc-usp-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+    .desc-usp div{display:flex;flex-direction:column;gap:2px;}
+    .desc-usp strong{font-size:14px;font-weight:600;color:var(--brown);}
+    .desc-usp span{font-size:13px;color:var(--muted);line-height:1.5;}
+    @media(max-width:520px){.desc-usps{grid-template-columns:1fr;}}
+    @media(max-width:768px){.desc-band{padding:40px 20px;}}
+
+    /* ── FEATURES 4-COL ── */
+    .feat-strip{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .feat-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+    .feat-cell{padding:40px 28px;border-right:1px solid var(--border);text-align:center;transition:background .2s;}
+    .feat-cell:last-child{border-right:none;}
+    .feat-cell:hover{background:var(--cream);}
+    .feat-ico{font-size:28px;margin-bottom:14px;display:block;}
+    .feat-t{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--brown);margin-bottom:9px;line-height:1.3;}
+    .feat-p{font-size:13px;color:var(--muted);line-height:1.6;}
+    @media(max-width:680px){
+      .feat-grid{grid-template-columns:repeat(2,1fr);}
+      .feat-cell:nth-child(2){border-right:none;}
+      .feat-cell:nth-child(1),.feat-cell:nth-child(2){border-bottom:1px solid var(--border);}
+    }
+    @media(max-width:480px){
+      .feat-grid{grid-template-columns:1fr;}
+      .feat-cell{border-right:none; border-bottom:1px solid var(--border); padding:32px 16px;}
+      .feat-cell:last-child{border-bottom:none;}
+    }
+
+    /* ── COLOR SHOWCASE ── */
+    .color-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding-top:40px;overflow:visible;}
+    .color-card{border-radius:20px;background:var(--cream);border:1.5px solid var(--border);box-shadow:0 2px 10px rgba(64,49,45,.05);display:flex;flex-direction:column;align-items:center;padding:40px 14px 18px;text-align:center;position:relative;}
+    .cc-swatch{width:54px;height:54px;border-radius:50%;position:absolute;top:-27px;left:50%;transform:translateX(-50%);border:3px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.18);}
+    .cc-photo{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:12px;margin-bottom:12px;}
+    .cc-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+    .cc-title{font-size:14px;font-weight:600;color:var(--brown);margin-bottom:10px;letter-spacing:-.2px;}
+    .cc-divider{width:32px;height:1px;background:rgba(181,141,148,.45);margin:0 auto 10px;}
+    .cc-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+    @media(max-width:860px){.color-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:600px){
+      .color-grid{
+        display:flex;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        scroll-behavior:smooth;
+        -webkit-overflow-scrolling:touch;
+        gap:14px;
+        padding:44px 16px 20px;
+        margin:0 -16px;
+        scrollbar-width:none;
+      }
+      .color-grid::-webkit-scrollbar{display:none;}
+      .color-card{
+        flex:0 0 78%;
+        scroll-snap-align:center;
+      }
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps-wrap{max-width:900px;margin:0 auto;}
+    .steps-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:12px;}
+    .step-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 20px rgba(64,49,45,.08);transition:all .35s cubic-bezier(.165,.84,.44,1);position:relative;}
+    .step-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(64,49,45,.15);}
+    .step-card-img{position:relative;aspect-ratio:3/2;overflow:hidden;}
+    .step-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+    .step-card:hover .step-card-img img{transform:scale(1.06);}
+    .step-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.01) 50%,rgba(64,49,45,.45) 100%);}
+    .step-num-pill{position:absolute;top:14px;left:14px;z-index:2;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:30px;padding:5px 13px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.15);}
+    .step-num-circle{width:20px;height:20px;border-radius:50%;background:var(--brown);color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .step-num-label{font-size:11px;font-weight:600;color:var(--brown);letter-spacing:.3px;}
+    .step-card-body{padding:20px 22px 24px;}
+    .step-title{font-size:16px;font-weight:600;color:var(--brown);margin-bottom:9px;letter-spacing:-.2px;}
+    .step-body{font-size:13px;color:var(--muted);line-height:1.7;}
+    @media(max-width:640px){.steps-list{grid-template-columns:1fr;gap:16px;}}
+
+    /* ── COMPARISON ── */
+    .cmp-wrap{max-width:860px;margin:0 auto;}
+    .cmp-header{display:grid;grid-template-columns:1fr 96px 1fr;margin-bottom:10px;}
+    .cmp-hdr-feel{background:var(--brown);color:#fff;border-radius:14px 0 0 14px;padding:13px 20px;text-align:center;font-size:13px;font-weight:600;letter-spacing:.2px;}
+    .cmp-hdr-vs{background:var(--brown);color:rgba(255,255,255,.4);font-size:10px;font-weight:600;text-align:center;padding:13px 0;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.12);}
+    .cmp-hdr-reg{background:#5A504E;color:#fff;border-radius:0 14px 14px 0;padding:13px 20px;text-align:center;font-size:13px;font-weight:600;letter-spacing:.2px;}
+    .cmp-rows{display:flex;flex-direction:column;gap:7px;}
+    .cmp-row{display:grid;grid-template-columns:1fr 96px 1fr;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(64,49,45,.06);transition:transform .2s,box-shadow .2s;}
+    .cmp-row:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(64,49,45,.11);}
+    .cmp-feel{background:linear-gradient(110deg,#FBF1F2 0%,#F5ECEE 100%);padding:15px 22px;display:flex;align-items:center;gap:11px;}
+    .cmp-mid{background:#EDE8E5;display:flex;align-items:center;justify-content:center;padding:10px 8px;border-left:1.5px solid rgba(181,141,148,.18);border-right:1.5px solid rgba(181,141,148,.18);}
+    .cmp-cat{font-size:10px;font-weight:600;color:var(--muted);text-align:center;line-height:1.4;text-transform:uppercase;letter-spacing:.08em;}
+    .cmp-reg{background:linear-gradient(110deg,#EDEAE8 0%,#E6E1DE 100%);padding:15px 22px;display:flex;align-items:center;justify-content:flex-end;gap:11px;}
+    .ck-c{width:26px;height:26px;border-radius:50%;background:#4BAF49;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(75,175,73,.3);}
+    .cx-c{width:26px;height:26px;border-radius:50%;background:#D94545;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(217,69,69,.26);}
+    .cmp-ft{font-size:13.5px;font-weight:600;color:var(--brown);line-height:1.3;}
+    .cmp-rt{font-size:13px;color:#8A7870;line-height:1.3;text-align:right;}
+    
+    @media(max-width:580px){
+      .cmp-header{grid-template-columns:1fr 64px 1fr;}
+      .cmp-row{grid-template-columns:1fr 64px 1fr;}
+      .cmp-feel,.cmp-reg{padding:13px 12px;gap:8px;}
+      .cmp-ft{font-size:12px;}
+      .cmp-rt{font-size:11.5px;}
+      .cmp-cat{font-size:9px;}
+      .ck-c,.cx-c{width:22px;height:22px;font-size:10px;}
+      .cmp-hdr-feel, .cmp-hdr-reg { padding: 13px 8px; font-size: 11.5px; }
+    }
+    @media(max-width:400px){
+      .cmp-header, .cmp-row { grid-template-columns: 1fr 50px 1fr; }
+      .cmp-feel, .cmp-reg { padding: 10px 8px; gap: 6px; }
+      .cmp-ft, .cmp-rt { font-size: 11px; }
+      .ck-c, .cx-c { width: 18px; height: 18px; font-size: 9px; }
+    }
+
+    /* ── INCLUDES / USP CARDS ── */
+    .ing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+    .ing-card{background:#fff;border:1px solid var(--border);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 16px rgba(64,49,45,.07);transition:transform .35s ease,box-shadow .35s ease;}
+    .ing-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(64,49,45,.12);}
+    .ing-card-img{width:100%;aspect-ratio:4/3;overflow:hidden;}
+    .ing-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+    .ing-card:hover .ing-card-img img{transform:scale(1.04);}
+    .ing-card-body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column;}
+    .ing-title{font-size:16px;font-weight:600;color:var(--brown);margin:0 0 8px;}
+    .ing-desc{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:16px;}
+    .ing-checklist{margin:0 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .ing-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--brown);}
+    .ing-check{width:14px;height:14px;color:var(--rose);flex-shrink:0;}
+    .ing-footer-line{margin-top:auto;padding-top:16px;border-top:1.5px solid var(--border);color:var(--rose);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.1em;}
+    .ing-slider-dots{display:none;justify-content:center;gap:8px;margin-top:28px;}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s ease;}
+    .dot.active{background:var(--rose);width:24px;border-radius:10px;}
+    
+    @media(max-width:768px){
+      .ing-grid{
+        display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+        gap:16px; padding:0 16px 20px; margin-top:24px; margin-left:-16px; margin-right:-16px; scrollbar-width:none;
+      }
+      .ing-grid::-webkit-scrollbar{display:none;}
+      .ing-card{flex:0 0 82%;scroll-snap-align:center;}
+      .ing-slider-dots{display:flex;}
+    }
+    @media(max-width:1100px) and (min-width:769px){.ing-grid{grid-template-columns:repeat(2,1fr);}}
+
+    /* ── PRODUCT DETAILS ── */
+    .det-grid{max-width:920px;margin:44px auto 0;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(64,49,45,.08);}
+    .det-img{background:var(--light);overflow:hidden;}
+    .det-img img{width:100%;height:100%;object-fit:cover;display:block;min-height:360px;}
+    .det-acc{background:var(--white);border-left:1px solid var(--border);}
+    .acc-item{border-bottom:1px solid var(--line);}
+    .acc-item:last-child{border-bottom:none;}
+    .acc-btn{width:100%;background:none;border:none;padding:18px 20px;font-family:'Figtree',sans-serif;font-size:14px;font-weight:600;color:var(--brown);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;line-height:1.4;transition:background .15s;}
+    .acc-btn:hover{background:var(--cream);}
+    .acc-ico{font-size:18px;color:var(--grey);flex-shrink:0;transition:transform .25s,color .2s;}
+    .acc-item.open .acc-ico{transform:rotate(45deg);color:var(--rose);}
+    .acc-body{display:none;padding:0 20px 18px;font-size:13px;color:var(--muted);line-height:1.75;}
+    .acc-item.open .acc-body{display:block;}
+    @media(max-width:580px){.det-grid{grid-template-columns:1fr;}.det-img img{min-height:220px;}.det-acc{border-left:none;border-top:1px solid var(--border);}}
+
+    /* ── TESTIMONIALS SLIDER ── */
+    .testi-head{max-width:1060px;margin:0 auto 36px;text-align:center;}
+    .testi-h{font-size:clamp(20px,4vw,30px);font-weight:600;color:var(--brown);letter-spacing:-.3px;}
+    .testi-sub{font-size:14px;color:var(--muted);margin-top:8px;}
+    
+    .testi-grid{
+      max-width:1060px;
+      margin:0 auto;
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+      gap:18px;
+      padding-bottom:24px;
+      scrollbar-width:none;
+    }
+    .testi-grid::-webkit-scrollbar{display:none;}
+
+    .tg-card{
+      flex:0 0 calc(33.333% - 12px);
+      scroll-snap-align:center;
+      background:#fff;
+      border-radius:20px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      box-shadow:0 2px 14px rgba(64,49,45,.07);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .tg-photo{width:100%;aspect-ratio:4/3;overflow:hidden;}
+    .tg-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+    .tg-card:hover .tg-photo img{transform:scale(1.04);}
+    .tg-body{padding:18px 18px 16px;display:flex;flex-direction:column;flex:1;}
+    .tg-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+    .tg-info{min-width:0;}
+    .tg-name{font-size:13.5px;font-weight:600;color:var(--brown);line-height:1.3;}
+    .tg-loc{display:none;}
+    .tg-stars{color:var(--star);font-size:13px;letter-spacing:.5px;}
+    .tg-txt{font-size:13px;color:#4a3c38;line-height:1.72;font-style:italic;margin-bottom:10px;flex:1;}
+    .tg-ok{font-size:11px;color:var(--green);font-weight:600;}
+
+    .testi-slider-dots{display:flex;justify-content:center;gap:8px;margin-top:12px;}
+
+    @media(max-width:860px){
+      .tg-card{flex:0 0 calc(50% - 9px);}
+    }
+    @media(max-width:600px){
+      .testi-grid{margin-left:-16px;margin-right:-16px;padding:0 16px 24px;}
+      .tg-card{flex:0 0 82%;}
+    }
+
+    /* ── GUARANTEE ── */
+    .guar-box{max-width:600px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:6px;padding:44px 40px;text-align:center;box-shadow:0 4px 20px rgba(64,49,45,.08);}
+    .guar-shield{width:72px;height:72px;background:var(--brown);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px;}
+    .guar-h{font-size:22px;font-weight:600;color:var(--brown);margin-bottom:12px;}
+    .guar-p{font-size:14px;color:var(--muted);line-height:1.75;max-width:400px;margin:0 auto;}
+    @media(max-width:520px){.guar-box{padding:32px 20px;}}
+    @media(max-width:400px){.guar-box{padding:28px 16px;} .guar-h{font-size:20px;}}
+
+    /* ── FAQ ── */
+    .faq-list{max-width:700px;margin:0 auto;}
+    .faq-item{border-bottom:1px solid var(--border);}
+    .faq-item:first-child{border-top:1px solid var(--border);}
+    .faq-btn{width:100%;background:none;border:none;padding:19px 0;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;color:var(--brown);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left;line-height:1.4;transition:color .15s;}
+    .faq-btn:hover{color:var(--rose);}
+    .faq-ico{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--pale);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--grey);flex-shrink:0;transition:transform .25s,background .2s,border-color .2s;}
+    .faq-item.open .faq-ico{transform:rotate(45deg);background:var(--rose);border-color:var(--rose);color:#fff;}
+    .faq-ans{display:none;padding:0 0 18px;font-size:14px;color:var(--muted);line-height:1.75;}
+    .faq-item.open .faq-ans{display:block;}
+
+    /* ── REVIEWS ── */
+    .rev-agg{text-align:center;margin-bottom:44px;}
+    .rev-num{font-size:62px;font-weight:600;color:var(--brown);line-height:1;}
+    .rev-stars{color:var(--star);font-size:22px;margin:6px 0;letter-spacing:3px;}
+    .rev-count{font-size:14px;color:var(--grey);font-weight:500;}
+    /* ── REVIEWS MASONRY ── */
+    .mason{column-count:3;column-gap:18px;max-width:1060px;margin:0 auto;}
+    .mason-card{break-inside:avoid;background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 2px 10px rgba(64,49,45,.06);}
+    .mason-img{width:100%;border-radius:12px;overflow:hidden;margin-bottom:14px;}
+    .mason-img img{width:100%;display:block;object-fit:cover;}
+    .mc-stars{color:var(--star);font-size:12px;letter-spacing:.5px;margin-bottom:9px;}
+    .mc-txt{font-size:13.5px;color:#4a3c38;line-height:1.72;font-style:italic;margin-bottom:14px;}
+    .mc-auth{display:flex;align-items:center;gap:9px;}
+    .mc-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;flex-shrink:0;}
+    .mc-name{font-size:13px;font-weight:600;color:var(--brown);}
+    .mc-meta{display:none;}
+    .mc-ok{font-size:11px;color:var(--green);font-weight:600;}
+    @media(max-width:740px){.mason{column-count:2;column-gap:14px;}}
+    @media(max-width:480px){.mason{column-count:2;column-gap:10px;}.mason-card{padding:14px;margin-bottom:10px;}.mc-txt{font-size:12.5px;}.mc-name{font-size:12px;}}
+
+    /* ── BRAND DARK ── */
+    .brand-inner{max-width:560px;margin:0 auto;text-align:center;}
+    .brand-logo{margin:0 auto 8px;width:100px;filter:invert(1) brightness(2);}
+    .brand-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--pale);margin-bottom:20px;display:block;margin-top:8px;}
+    .brand-hr{width:36px;height:2px;background:var(--rose);margin:0 auto 20px;}
+    .brand-p{font-size:15px;color:#c8b8b2;line-height:1.75;margin-bottom:28px;}
+    .brand-certs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+    .brand-cert{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:2px;padding:6px 14px;font-size:12px;font-weight:600;color:#d5c8c2;}
+
+    /* ── FINAL CTA ── */
+    .final{background:linear-gradient(140deg,#3E2F2B 0%,#40312D 100%);padding:72px 28px;text-align:center;}
+    .final-ey{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:12px;}
+    .final-h{font-size:clamp(22px,4vw,38px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:12px;letter-spacing:-.3px;}
+    .final-p{font-size:15px;color:#c8b8b2;max-width:400px;margin:0 auto 28px;line-height:1.6;}
+    .btn-final{display:inline-block;background:var(--rose);color:#fff;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;letter-spacing:.4px;padding:17px 52px;border:none;border-radius:3px;cursor:pointer;transition:background .2s;box-shadow:0 4px 16px rgba(181,141,148,.4);}
+    .btn-final:hover{background:#a07c83;}
+    .final-sub{font-size:12px;color:#7a6860;margin-top:12px;}
+    @media(max-width:768px){ .final{padding:48px 20px;} }
+
+    /* ── FOOTER ── */
+    .footer{background:#291e1b;padding:32px 28px;text-align:center;}
+    .footer-logo{margin:0 auto 10px;width:80px;filter:invert(1) brightness(2);}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;margin-bottom:12px;}
+    .footer-links a{font-size:12px;color:#4a3830;font-weight:500;transition:color .15s;}
+    .footer-links a:hover{color:#c8b8b2;}
+    .footer-copy{font-size:12px;color:#3a2c28;}
+
+    /* ── STICKY ── */
+    .sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:10px 16px;box-shadow:0 -4px 20px rgba(64,49,45,.12);z-index:300;align-items:center;gap:12px;}
+    .sticky-p{flex-shrink:0;}
+    .sticky-old{font-size:11px;color:var(--grey);text-decoration:line-through;}
+    .sticky-new{font-size:20px;font-weight:600;color:var(--brown);line-height:1;}
+    .sticky-btn{flex:1;background:var(--brown);color:#f5f1eb;font-family:'Figtree',sans-serif;font-size:13.5px;font-weight:600;padding:14px;border:none;border-radius:3px;cursor:pointer;text-align:center;}
+    @media(max-width:760px){.sticky{display:flex;}body{padding-bottom:80px;}} /* Increased padding to safely clear sticky bar on mobile */
+
+    /* ══ CART DRAWER ══ */
+    .cart-overlay{position:fixed;inset:0;background:rgba(40,28,25,.5);opacity:0;pointer-events:none;z-index:800;transition:opacity .3s ease;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);}
+    .cart-overlay.open{opacity:1;pointer-events:all;}
+    .cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);background:#FDFAF7;z-index:801;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(40,28,25,.18);}
+    .cart-drawer.open{transform:translateX(0);}
+
+    /* header */
+    .cart-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);background:#fff;flex-shrink:0;}
+    .cart-hdr-left{display:flex;align-items:center;gap:10px;}
+    .cart-hdr-title{font-size:16px;font-weight:600;color:var(--brown);}
+    .cart-hdr-badge{background:var(--brown);color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .cart-close{width:34px;height:34px;background:var(--light);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--brown);font-size:18px;line-height:1;transition:background .15s;}
+    .cart-close:hover{background:var(--pale);}
+
+    /* body scroll area */
+    .cart-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:0;}
+    .cart-body::-webkit-scrollbar{width:4px;}
+    .cart-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+    /* cart item */
+    .cart-item{display:flex;gap:14px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:18px;}
+    .cart-item-img{width:88px;height:88px;border-radius:12px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:var(--light);}
+    .cart-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s;}
+    .cart-item-info{flex:1;min-width:0;}
+    .cart-item-name{font-size:14px;font-weight:600;color:var(--brown);line-height:1.3;margin-bottom:3px;}
+    .cart-item-sub{font-size:12px;color:var(--muted);margin-bottom:10px;}
+
+    /* variant badge in cart */
+    .cart-v-badge{display:inline-flex;align-items:center;gap:5px;background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:3px 9px 3px 4px;margin-bottom:10px;}
+    .cart-v-badge-swatch{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.18);flex-shrink:0;}
+    .cart-v-badge span{font-size:11.5px;font-weight:600;color:var(--brown);}
+
+    /* variant quick-select swatches */
+    .cart-swatches-label{font-size:10.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+    .cart-swatches{display:flex;gap:7px;flex-wrap:wrap;}
+    .cart-sw-btn{width:26px;height:26px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:border-color .15s,transform .15s;padding:0;background:none;flex-shrink:0;}
+    .cart-sw-btn:hover{transform:scale(1.15);}
+    .cart-sw-btn.active{border-color:var(--brown);}
+    .cart-sw-btn .sw-dot{width:100%;height:100%;border-radius:50%;display:block;}
+
+    /* right col: price + qty */
+    .cart-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+    .cart-item-price{font-size:16px;font-weight:600;color:var(--brown);}
+    .cart-item-old{font-size:12px;color:var(--grey);text-decoration:line-through;}
+    .cart-qty{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-top:6px;}
+    .cart-qty-btn{width:32px;height:32px;background:var(--cream);border:none;cursor:pointer;font-size:17px;font-weight:500;color:var(--brown);display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0;}
+    .cart-qty-btn:hover{background:var(--light);}
+    .cart-qty-val{width:34px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--brown);border-left:1px solid var(--border);border-right:1px solid var(--border);}
+
+    /* upsell in cart */
+    .cart-upsell{background:linear-gradient(110deg,#FBF1F2,#F5ECEE);border:1.5px solid #DDB8BC;border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;margin-bottom:16px;}
+    .cart-upsell-img{width:64px;height:64px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid #DDB8BC;}
+    .cart-upsell-img img{width:100%;height:100%;object-fit:cover;}
+    .cart-upsell-info{flex:1;min-width:0;}
+    .cart-upsell-tag{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#C12836;margin-bottom:3px;}
+    .cart-upsell-name{font-size:13px;font-weight:600;color:var(--brown);line-height:1.3;margin-bottom:2px;}
+    .cart-upsell-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-bottom:7px;}
+    .cart-upsell-price-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+    .cart-upsell-new{font-size:14px;font-weight:700;color:var(--brown);}
+    .cart-upsell-was{font-size:11px;color:var(--grey);text-decoration:line-through;}
+    .cart-upsell-save{font-size:10px;font-weight:700;background:#C12836;color:#fff;padding:2px 6px;border-radius:3px;}
+    .cart-upsell-btn{display:inline-flex;align-items:center;gap:5px;background:var(--brown);color:#fff;font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;border:none;cursor:pointer;transition:background .15s;white-space:nowrap;}
+    .cart-upsell-btn:hover{background:var(--brown2);}
+    .cart-upsell-btn.added{background:#3E8A5A;cursor:default;}
+    .cart-upsell-btn.added:hover{background:#3E8A5A;}
+
+    /* add-variant strip */
+    .cart-add-variant{padding:14px 20px;border-top:1px solid var(--border);background:var(--cream);}
+    .cart-add-variant-lbl{font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+    .cart-add-swatches{display:flex;gap:8px;flex-wrap:wrap;}
+    .cart-add-sw{width:28px;height:28px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;padding:0;background:none;flex-shrink:0;position:relative;transition:transform .15s;}
+    .cart-add-sw:hover{transform:scale(1.15);}
+    .cart-add-sw.in-cart{border-color:var(--brown);}
+    .cart-add-sw .sw-dot{width:100%;height:100%;border-radius:50%;display:block;}
+    .cart-add-sw .cart-sw-check{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:rgba(64,49,45,.35);border-radius:50%;font-size:10px;color:#fff;font-weight:700;}
+    .cart-add-sw.in-cart .cart-sw-check{display:flex;}
+
+    /* footer */
+    .cart-footer{border-top:1px solid var(--border);padding:14px 20px 18px;background:#fff;flex-shrink:0;}
+    .cart-total-toggle{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700;color:var(--brown);margin-bottom:0;cursor:pointer;user-select:none;padding-bottom:2px;}
+    .cart-total-toggle-arrow{font-size:14px;color:var(--muted);transition:transform .25s;line-height:1;}
+    .cart-total-toggle-arrow.open{transform:rotate(180deg);}
+    .cart-breakdown{overflow:hidden;max-height:0;transition:max-height .28s ease;margin-bottom:0;}
+    .cart-breakdown.open{max-height:120px;margin-bottom:10px;margin-top:8px;}
+    .cart-total-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:5px;}
+    .cart-total-row.savings{color:#3E8A5A;font-weight:600;}
+    .btn-cart-cta{width:100%;background:var(--brown);color:#fff;font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;padding:16px 24px;border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(64,49,45,.25);transition:background .2s,transform .1s;margin-top:12px;margin-bottom:8px;}
+    .btn-cart-cta:hover{background:var(--brown2);transform:translateY(-1px);}
+    .cart-secure{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;color:var(--muted);}
+    @media(max-width:600px){.cart-breakdown{max-height:0;}.cart-breakdown.open{max-height:120px;}}
+
+    /* nav cart icon */
+    .nav-cart-icon{position:absolute;right:20px;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--brown);padding:6px 10px;border-radius:8px;transition:background .15s;font-family:'Figtree',sans-serif;}
+    .nav-cart-icon:hover{background:var(--cream);}
+    .nav-cart-count{background:var(--brown);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .nav-cart-label{font-size:13px;font-weight:600;}
+    @media(max-width:480px){.nav-cart-label{display:none;}}
+  </style>
+</head>
+<body>
+
+<div class="ann">
+  <span class="ann-pill">Nur Heute</span>
+  <strong>-33% auf alle Sets</strong> &nbsp;·&nbsp; Kostenloser Versand &nbsp;·&nbsp; 30-Tage-Garantie
+</div>
+
+<nav class="nav">
+  <div class="nav-inner" style="position:relative;">
+    <div class="nav-logo">
+      <img src="https://img.funnelish.com/5973/869783/1753174619-Feel1_LOGO.svg" alt="Feel1" width="110"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-fb">Feel<em>1</em><span></span></div>
+    </div>
+    <button class="nav-cart-icon" onclick="openCart()" aria-label="Warenkorb öffnen">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <div class="nav-cart-count" id="navCartCount">0</div>
+      <span class="nav-cart-label">Warenkorb</span>
+    </button>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+
+    <div class="gal-col">
+      <div class="gal-main">
+        <img id="mainImg" src="Nail%20Polish%20DE/main-product1.jpg" alt="Feel1 Nagellackstift" />
+        <button class="gal-arrow gal-prev" onclick="galNav(-1)">&#8592;</button>
+        <button class="gal-arrow gal-next" onclick="galNav(1)">&#8594;</button>
+      </div>
+      <div class="gal-thumbs">
+        <div class="gal-thumb active" onclick="galThumbClick(0)">
+          <img src="Nail%20Polish%20DE/main-product1.jpg" alt="" />
+        </div>
+        <div class="gal-thumb" onclick="galThumbClick(1)">
+          <img src="Nail%20Polish%20DE/main-product2.jpg" alt="" />
+        </div>
+        <div class="gal-thumb" onclick="galThumbClick(2)">
+          <img src="Nail%20Polish%20DE/main-product3.jpg" alt="" />
+        </div>
+        <div class="gal-thumb" onclick="galThumbClick(3)">
+          <img id="thumb3" src="Nail%20Polish%20DE/main-rose.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="pf-badge">Nagellackstift · Einfache Anwendung</div>
+      <h1 class="pf-title">Feel1 Nagellackstift</h1>
+      <div class="pf-rating">
+        <span class="pf-stars">★★★★★</span>
+        <span class="pf-rtxt"><a href="#bewertungen">4,9/5 · 3.412 Bewertungen</a></span>
+      </div>
+
+      <div class="pf-price-wrap">
+        <div class="pf-price-old">Normalpreis: <del>£60,00</del></div>
+        <div class="pf-price-row">
+          <ins style="text-decoration:none;" class="pf-price-new">£39,99</ins>
+          <span class="pf-price-save">Save £20.01</span>
+        </div>
+        <div class="pf-urgency">⏱ Nur heute – Limitiertes Angebot</div>
+      </div>
+
+      <p class="pf-desc"><strong>Makellose Nägel: Einfacher als Lack, günstiger als das Studio.</strong> Der Feel1 Nagellackstift gibt dir ein präzises, fleckenfreies Ergebnis in Minuten. Kein Verschmieren, kein Warten, kein Termin nötig – einfach Kappe öffnen und loslegen.</p>
+
+      <ul class="pf-checks">
+        <li>Präzisions-Spitze – trifft jeden Nagel sauber, kein Nachbessern</li>
+        <li>Sofort trocken – berührungstrocken in unter 60 Sekunden</li>
+        <li>Hochglanz-Finish – Salon-Ergebnis beim ersten Strich</li>
+        <li>Pflegende Formel – ohne aggressiven Geruch, stärkt den Nagel</li>
+        <li>Stiftformat – passt in jede Tasche, ideal für unterwegs</li>
+      </ul>
+
+      <hr class="pf-hr"/>
+
+      <div class="vp-label">Farbe wählen: <strong id="vp-val">Rose</strong></div>
+      <div class="vp-grid">
+
+        <input type="radio" name="color" id="c-rose" checked />
+        <label for="c-rose" onclick="selectVariant('rose', true)">
+          <div class="vp-swatch sw-rose"></div>
+          <div class="vp-name">Rose</div>
+          <div class="vp-desc">Rot · Rosa · Beere</div>
+        </label>
+
+        <input type="radio" name="color" id="c-violett" />
+        <label for="c-violett" onclick="selectVariant('violett', true)">
+          <div class="vp-swatch sw-violett"></div>
+          <div class="vp-name">Violett</div>
+          <div class="vp-desc">Lila · Beere</div>
+        </label>
+
+        <input type="radio" name="color" id="c-pastell" />
+        <label for="c-pastell" onclick="selectVariant('pastell', true)">
+          <div class="vp-swatch sw-pastell"></div>
+          <div class="vp-name">Pastell</div>
+          <div class="vp-desc">Mint · Flieder</div>
+        </label>
+
+        <input type="radio" name="color" id="c-apfel" />
+        <label for="c-apfel" onclick="selectVariant('apfel', true)">
+          <div class="vp-swatch sw-apfel"></div>
+          <div class="vp-name">Apfel</div>
+          <div class="vp-desc">Herbst · Erde</div>
+        </label>
+
+        <input type="radio" name="color" id="c-lenz" />
+        <label for="c-lenz" onclick="selectVariant('lenz', true)">
+          <div class="vp-swatch sw-lenz"></div>
+          <div class="vp-name">Lenz</div>
+          <div class="vp-desc">Frühling · Bunt</div>
+        </label>
+
+      </div>
+
+      <div class="pf-atc-row">
+        <div class="pf-hero-qty">
+          <button class="pf-hero-qty-btn" onclick="heroChangeQty(-1)" aria-label="Weniger">−</button>
+          <div class="pf-hero-qty-val" id="heroQtyVal">1</div>
+          <button class="pf-hero-qty-btn" onclick="heroChangeQty(1)" aria-label="Mehr">+</button>
+        </div>
+        <button class="btn-atc" onclick="goToCheckout()">In den Warenkorb</button>
+      </div>
+
+      <div class="pf-secure">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Sichere Zahlung</span>
+      </div>
+
+      <div class="pf-trust">
+        <div class="pf-trust-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15 9.99999M20 12C20 16.4611 14.54 19.6937 12.6414 20.683C12.4361 20.79 12.3334 20.8435 12.191 20.8712C12.08 20.8928 11.92 20.8928 11.809 20.8712C11.6666 20.8435 11.5639 20.79 11.3586 20.683C9.45996 19.6937 4 16.4611 4 12V8.21759C4 7.41808 4 7.01833 4.13076 6.6747C4.24627 6.37113 4.43398 6.10027 4.67766 5.88552C4.9535 5.64243 5.3278 5.50207 6.0764 5.22134L11.4382 3.21067C11.6461 3.13271 11.75 3.09373 11.857 3.07827C11.9518 3.06457 12.0482 3.06457 12.143 3.07827C12.25 3.09373 12.3539 3.13271 12.5618 3.21067L17.9236 5.22134C18.6722 5.50207 19.0465 5.64243 19.3223 5.88552C19.566 6.10027 19.7537 6.37113 19.8692 6.6747C20 7.01833 20 7.41808 20 8.21759V12Z" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="pf-trust-text">
+          <strong>30-Tage Geld-zurück-Garantie</strong>
+          Nicht zufrieden? Einfach zurückschicken – kein Aufwand, volle Erstattung.
+        </div>
+      </div>
+
+      <div class="pf-includes">
+        <div class="pf-inc-inner">
+          <div class="pf-inc-content">
+            <div class="pf-inc-label">Im Lieferumfang enthalten:</div>
+            <div class="pf-inc-items">
+              <div class="pf-inc-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                5 × Feel1 Nagellackstift
+              </div>
+              <div class="pf-inc-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                1 × Überlack (Hochglanz)
+              </div>
+              <div class="pf-inc-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                1 × Unterlack (Schutzschicht)
+              </div>
+            </div>
+          </div>
+          <div class="pf-inc-photo">
+            <img src="Nail%20Polish%20DE/feel1%20pack.jpg" alt="Feel1 Set" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trust">
+  <div class="trust-track">
+
+    <div class="ti">
+      <svg viewBox="0 0 359.928 359.928" fill="var(--brown)" xmlns="http://www.w3.org/2000/svg"><path d="M327.139,150.366c1.842-8.121,2.789-16.328,2.789-24.508c0-54.646-42.805-97.451-97.449-97.451c-24.561,0-48.827,9.249-67.512,25.279c-18.688-16.032-42.955-25.279-67.516-25.279C42.806,28.406,0,71.212,0,125.857C0,191.912,45.99,232.286,115.604,293.4c5.95,5.224,12.091,10.614,18.41,16.202c0.043,0.039,0.087,0.077,0.131,0.115l21.018,18.155c2.816,2.433,6.311,3.648,9.806,3.648s6.99-1.217,9.807-3.649l18.769-16.216c17.276,12.491,38.483,19.865,61.384,19.865c57.897,0,105-47.103,105-105C359.928,196.572,347.321,169.513,327.139,150.366z M164.968,296.699l-11.146-9.629c-6.323-5.592-12.469-10.987-18.425-16.215C69.672,213.156,30,178.329,30,125.857c0-38.454,28.998-67.451,67.451-67.451c20.925,0,42.407,10.03,56.065,26.177c2.851,3.37,7.04,5.313,11.453,5.313c4.414,0,8.604-1.944,11.453-5.315c13.651-16.145,35.131-26.174,56.056-26.174c38.452,0,67.449,28.998,67.449,67.451c0,1.916-0.076,3.816-0.211,5.71c-13.593-6.438-28.776-10.046-44.789-10.046c-57.897,0-105,47.103-105,105c0,24.157,8.205,46.431,21.968,64.192L164.968,296.699z M254.928,301.522c-41.355,0-75-33.645-75-75s33.645-75,75-75c41.355,0,75,33.645,75,75S296.283,301.522,254.928,301.522z"/><path d="M276.321,193.915l-34.393,34.393l-9.394-9.393c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213l20,20c2.929,2.929,6.768,4.394,10.606,4.394c3.839,0,7.678-1.464,10.606-4.394l45-45c5.858-5.858,5.858-15.355,0-21.213C291.677,188.057,282.179,188.057,276.321,193.915z"/></svg>
+      Dermatologisch getestet
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 330 330" fill="var(--brown)" xmlns="http://www.w3.org/2000/svg"><path d="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165c24.814,0,45-20.187,45-45s-20.186-45-45-45c-8.271,0-15-6.729-15-15s6.729-15,15-15h146.996c7.134,0,13.28-5.024,14.7-12.015C328.889,187.19,330,176.093,330,165C330,74.019,255.981,0,165,0z M299.174,180H165c-24.813,0-45,20.187-45,45s20.187,45,45,45c8.271,0,15,6.729,15,15s-6.729,15-15,15c-74.439,0-135-60.561-135-135S90.561,30,165,30s135,60.561,135,135C300,170.015,299.724,175.029,299.174,180z"/><circle cx="226.413" cy="103.588" r="22.5"/><circle cx="165.002" cy="78.15" r="22.5"/><circle cx="103.589" cy="103.587" r="22.5"/></svg>
+      5 Farb-Kollektionen
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15.5 9.5M17.9012 4.99851C18.1071 5.49653 18.5024 5.8924 19.0001 6.09907L20.7452 6.82198C21.2433 7.02828 21.639 7.42399 21.8453 7.92206C22.0516 8.42012 22.0516 8.97974 21.8453 9.47781L21.1229 11.2218C20.9165 11.7201 20.9162 12.2803 21.1236 12.7783L21.8447 14.5218C21.9469 14.7685 21.9996 15.0329 21.9996 15.2999C21.9997 15.567 21.9471 15.8314 21.8449 16.0781C21.7427 16.3249 21.5929 16.549 21.4041 16.7378C21.2152 16.9266 20.991 17.0764 20.7443 17.1785L19.0004 17.9009C18.5023 18.1068 18.1065 18.5021 17.8998 18.9998L17.1769 20.745C16.9706 21.2431 16.575 21.6388 16.0769 21.8451C15.5789 22.0514 15.0193 22.0514 14.5212 21.8451L12.7773 21.1227C12.2792 20.9169 11.7198 20.9173 11.2221 21.1239L9.47689 21.8458C8.97912 22.0516 8.42001 22.0514 7.92237 21.8453C7.42473 21.6391 7.02925 21.2439 6.82281 20.7464L6.09972 19.0006C5.8938 18.5026 5.49854 18.1067 5.00085 17.9L3.25566 17.1771C2.75783 16.9709 2.36226 16.5754 2.15588 16.0777C1.94951 15.5799 1.94923 15.0205 2.1551 14.5225L2.87746 12.7786C3.08325 12.2805 3.08283 11.7211 2.8763 11.2233L2.15497 9.47678C2.0527 9.2301 2.00004 8.96568 2 8.69863C1.99996 8.43159 2.05253 8.16715 2.15472 7.92043C2.25691 7.67372 2.40671 7.44955 2.59557 7.26075C2.78442 7.07195 3.00862 6.92222 3.25537 6.8201L4.9993 6.09772C5.49687 5.89197 5.89248 5.4972 6.0993 5.00006L6.82218 3.25481C7.02848 2.75674 7.42418 2.36103 7.92222 2.15473C8.42027 1.94842 8.97987 1.94842 9.47792 2.15473L11.2218 2.87712C11.7199 3.08291 12.2793 3.08249 12.7771 2.87595L14.523 2.15585C15.021 1.94966 15.5804 1.9497 16.0784 2.15597C16.5763 2.36223 16.972 2.75783 17.1783 3.25576L17.9014 5.00153L17.9012 4.99851Z"/></svg>
+      30 Tage Geld-zurück
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.44893 17.009C-0.246384 7.83762 7.34051 0.686125 19.5546 3.61245C20.416 3.81881 21.0081 4.60984 20.965 5.49452C20.5862 13.288 17.0341 17.7048 6.13252 17.9857C5.43022 18.0038 4.76908 17.6344 4.44893 17.009Z"/><path d="M3.99999 21C5.50005 15.5 6 12.5 12 9.99997"/></svg>
+      Keine aggressiven Chemikalien
+    </div>
+    <div class="ti-sep"></div>
+
+    <div class="ti">
+      <svg viewBox="0 0 359.928 359.928" fill="var(--brown)" xmlns="http://www.w3.org/2000/svg"><path d="M327.139,150.366c1.842-8.121,2.789-16.328,2.789-24.508c0-54.646-42.805-97.451-97.449-97.451c-24.561,0-48.827,9.249-67.512,25.279c-18.688-16.032-42.955-25.279-67.516-25.279C42.806,28.406,0,71.212,0,125.857C0,191.912,45.99,232.286,115.604,293.4c5.95,5.224,12.091,10.614,18.41,16.202c0.043,0.039,0.087,0.077,0.131,0.115l21.018,18.155c2.816,2.433,6.311,3.648,9.806,3.648s6.99-1.217,9.807-3.649l18.769-16.216c17.276,12.491,38.483,19.865,61.384,19.865c57.897,0,105-47.103,105-105C359.928,196.572,347.321,169.513,327.139,150.366z M164.968,296.699l-11.146-9.629c-6.323-5.592-12.469-10.987-18.425-16.215C69.672,213.156,30,178.329,30,125.857c0-38.454,28.998-67.451,67.451-67.451c20.925,0,42.407,10.03,56.065,26.177c2.851,3.37,7.04,5.313,11.453,5.313c4.414,0,8.604-1.944,11.453-5.315c13.651-16.145,35.131-26.174,56.056-26.174c38.452,0,67.449,28.998,67.449,67.451c0,1.916-0.076,3.816-0.211,5.71c-13.593-6.438-28.776-10.046-44.789-10.046c-57.897,0-105,47.103-105,105c0,24.157,8.205,46.431,21.968,64.192L164.968,296.699z M254.928,301.522c-41.355,0-75-33.645-75-75s33.645-75,75-75c41.355,0,75,33.645,75,75S296.283,301.522,254.928,301.522z"/><path d="M276.321,193.915l-34.393,34.393l-9.394-9.393c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213l20,20c2.929,2.929,6.768,4.394,10.606,4.394c3.839,0,7.678-1.464,10.606-4.394l45-45c5.858-5.858,5.858-15.355,0-21.213C291.677,188.057,282.179,188.057,276.321,193.915z"/></svg>
+      Dermatologisch getestet
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 330 330" fill="var(--brown)" xmlns="http://www.w3.org/2000/svg"><path d="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165c24.814,0,45-20.187,45-45s-20.186-45-45-45c-8.271,0-15-6.729-15-15s6.729-15,15-15h146.996c7.134,0,13.28-5.024,14.7-12.015C328.889,187.19,330,176.093,330,165C330,74.019,255.981,0,165,0z M299.174,180H165c-24.813,0-45,20.187-45,45s20.187,45,45,45c8.271,0,15,6.729,15,15s-6.729,15-15,15c-74.439,0-135-60.561-135-135S90.561,30,165,30s135,60.561,135,135C300,170.015,299.724,175.029,299.174,180z"/><circle cx="226.413" cy="103.588" r="22.5"/><circle cx="165.002" cy="78.15" r="22.5"/><circle cx="103.589" cy="103.587" r="22.5"/></svg>
+      5 Farb-Kollektionen
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15.5 9.5M17.9012 4.99851C18.1071 5.49653 18.5024 5.8924 19.0001 6.09907L20.7452 6.82198C21.2433 7.02828 21.639 7.42399 21.8453 7.92206C22.0516 8.42012 22.0516 8.97974 21.8453 9.47781L21.1229 11.2218C20.9165 11.7201 20.9162 12.2803 21.1236 12.7783L21.8447 14.5218C21.9469 14.7685 21.9996 15.0329 21.9996 15.2999C21.9997 15.567 21.9471 15.8314 21.8449 16.0781C21.7427 16.3249 21.5929 16.549 21.4041 16.7378C21.2152 16.9266 20.991 17.0764 20.7443 17.1785L19.0004 17.9009C18.5023 18.1068 18.1065 18.5021 17.8998 18.9998L17.1769 20.745C16.9706 21.2431 16.575 21.6388 16.0769 21.8451C15.5789 22.0514 15.0193 22.0514 14.5212 21.8451L12.7773 21.1227C12.2792 20.9169 11.7198 20.9173 11.2221 21.1239L9.47689 21.8458C8.97912 22.0516 8.42001 22.0514 7.92237 21.8453C7.42473 21.6391 7.02925 21.2439 6.82281 20.7464L6.09972 19.0006C5.8938 18.5026 5.49854 18.1067 5.00085 17.9L3.25566 17.1771C2.75783 16.9709 2.36226 16.5754 2.15588 16.0777C1.94951 15.5799 1.94923 15.0205 2.1551 14.5225L2.87746 12.7786C3.08325 12.2805 3.08283 11.7211 2.8763 11.2233L2.15497 9.47678C2.0527 9.2301 2.00004 8.96568 2 8.69863C1.99996 8.43159 2.05253 8.16715 2.15472 7.92043C2.25691 7.67372 2.40671 7.44955 2.59557 7.26075C2.78442 7.07195 3.00862 6.92222 3.25537 6.8201L4.9993 6.09772C5.49687 5.89197 5.89248 5.4972 6.0993 5.00006L6.82218 3.25481C7.02848 2.75674 7.42418 2.36103 7.92222 2.15473C8.42027 1.94842 8.97987 1.94842 9.47792 2.15473L11.2218 2.87712C11.7199 3.08291 12.2793 3.08249 12.7771 2.87595L14.523 2.15585C15.021 1.94966 15.5804 1.9497 16.0784 2.15597C16.5763 2.36223 16.972 2.75783 17.1783 3.25576L17.9014 5.00153L17.9012 4.99851Z"/></svg>
+      30 Tage Geld-zurück
+    </div>
+    <div class="ti-sep"></div>
+    <div class="ti">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.44893 17.009C-0.246384 7.83762 7.34051 0.686125 19.5546 3.61245C20.416 3.81881 21.0081 4.60984 20.965 5.49452C20.5862 13.288 17.0341 17.7048 6.13252 17.9857C5.43022 18.0038 4.76908 17.6344 4.44893 17.009Z"/><path d="M3.99999 21C5.50005 15.5 6 12.5 12 9.99997"/></svg>
+      Keine aggressiven Chemikalien
+    </div>
+    <div class="ti-sep"></div>
+
+  </div>
+</div>
+
+<div class="sec sec-white">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">5 Kollektionen</div>
+    <h2 class="sh">Finde deine perfekte Farbe</h2>
+    <p class="sd">Von zartem Alltagsnude bis mutigem Beerrot – für jeden Anlass die richtige Wahl.</p>
+    <div class="color-grid">
+
+      <div class="color-card">
+        <div class="cc-swatch sw-rose"></div>
+        <div class="cc-photo"><img src="Nail%20Polish%20DE/variant-rose.jpg" alt="Rose Set" /></div>
+        <div class="cc-title">Rose Set</div>
+        <div class="cc-divider"></div>
+        <div class="cc-desc">Warm und romantisch – von tiefem Beerrot bis zartem Rosé.</div>
+      </div>
+
+      <div class="color-card">
+        <div class="cc-swatch sw-violett"></div>
+        <div class="cc-photo"><img src="Nail%20Polish%20DE/variant-violett.jpg" alt="Violett Set" /></div>
+        <div class="cc-title">Violett Set</div>
+        <div class="cc-divider"></div>
+        <div class="cc-desc">Kräftige Violetttöne bis sanftes Lila – mutig und elegant.</div>
+      </div>
+
+      <div class="color-card">
+        <div class="cc-swatch sw-pastell"></div>
+        <div class="cc-photo"><img src="Nail%20Polish%20DE/variant-pastell.jpg" alt="Pastell Set" /></div>
+        <div class="cc-title">Pastell Set</div>
+        <div class="cc-divider"></div>
+        <div class="cc-desc">Zarte Töne für einen frischen, verspielten Look – perfekt für den Frühling.</div>
+      </div>
+
+      <div class="color-card">
+        <div class="cc-swatch sw-apfel"></div>
+        <div class="cc-photo"><img src="Nail%20Polish%20DE/variant-apfel.jpg" alt="Apfel Set" /></div>
+        <div class="cc-title">Apfel Set</div>
+        <div class="cc-divider"></div>
+        <div class="cc-desc">Warme Erdtöne und sattes Grün – die perfekte Herbstkollektion.</div>
+      </div>
+
+      <div class="color-card">
+        <div class="cc-swatch sw-lenz"></div>
+        <div class="cc-photo"><img src="Nail%20Polish%20DE/variant-lenz.jpg" alt="Lenz Set" /></div>
+        <div class="cc-title">Lenz Set</div>
+        <div class="cc-divider"></div>
+        <div class="cc-desc">Bunt, frisch und lebendig – für alle, die Farbe lieben.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-cream">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Anwendung</div>
+    <h2 class="sh">3 Schritte – wirklich.</h2>
+    <p class="sd" style="margin-bottom:44px;">So einfach war Nagelpflege noch nie.</p>
+    <div class="steps-wrap">
+      <div class="steps-list">
+
+        <div class="step-card">
+          <div class="step-card-img">
+            <img src="Nail%20Polish%20DE/step1.jpg" alt="Kappe öffnen" />
+            <div class="step-num-pill">
+              <div class="step-num-circle">1</div>
+              <span class="step-num-label">Schritt 1</span>
+            </div>
+          </div>
+          <div class="step-card-body">
+            <div class="step-title">Kappe öffnen</div>
+            <p class="step-body">Drehe die Kappe ab – der Stift ist sofort einsatzbereit. Kein Schütteln, kein Vorbereiten nötig.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img">
+            <img src="Nail%20Polish%20DE/step2.jpg" alt="Auftragen" />
+            <div class="step-num-pill">
+              <div class="step-num-circle">2</div>
+              <span class="step-num-label">Schritt 2</span>
+            </div>
+          </div>
+          <div class="step-card-body">
+            <div class="step-title">Gleichmäßig auftragen</div>
+            <p class="step-body">Führe die feine Spitze sanft über den Nagel – für einen präzisen, sauberen Auftrag.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img">
+            <img src="Nail%20Polish%20DE/step3.jpg" alt="Ergebnis" />
+            <div class="step-num-pill">
+              <div class="step-num-circle">3</div>
+              <span class="step-num-label">Schritt 3</span>
+            </div>
+          </div>
+          <div class="step-card-body">
+            <div class="step-title">Fertig. Perfekt.</div>
+            <p class="step-body">Wenige Minuten später: trockene, glänzende Nägel wie frisch aus dem Studio.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-white" style="padding-bottom:64px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="testi-head">
+      <h2 class="testi-h">Was unsere Kundinnen sagen</h2>
+      <p class="testi-sub">Echte Erfahrungen – von echten Kundinnen.</p>
+    </div>
+    
+    <div class="testi-grid" id="testiGrid">
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T142842.238.jpg" alt="Lena K." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Lena K.</div>
+              <div class="tg-loc">Berlin · vor 3 Tagen</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„Die Anwendung ist unglaublich einfach – einfach aufdrehen und direkt auftragen. In unter 5 Minuten alle Nägel fertig. Kein Kleckern, kein Stress!"</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T143017.719.jpg" alt="Sophie M." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Sophie M.</div>
+              <div class="tg-loc">München · vor 1 Woche</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„Endlich kein starker Chemikaliengeruch mehr! Früher konnte ich normalen Lack kaum ertragen. Feel1 riecht kaum und trocknet so schnell – ein absoluter Traum."</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T143101.729.jpg" alt="Jana W." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Jana W.</div>
+              <div class="tg-loc">Hamburg · vor 5 Tagen</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„Trocknet so schnell – direkt danach Tasche zu, fertig. Kein Verwischen mehr. Für meine Morgenroutine ein Muss!"</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T143504.134.jpg" alt="Anna T." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Anna T.</div>
+              <div class="tg-loc">Wien · vor 2 Wochen</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„So einfach wie ein Lippenstift! Perfektes, gleichmäßiges Ergebnis schon beim allerersten Versuch. Ich hätte nie gedacht, dass Nagellack so unkompliziert sein kann."</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T144125.213.jpg" alt="Mia L." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Mia L.</div>
+              <div class="tg-loc">Zürich · vor 4 Tagen</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„Die schnelle Trocknung ist ein echter Gamechanger. Und die Farben sind einfach atemberaubend – genau wie auf den Fotos!"</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-photo"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T144551.864.jpg" alt="Laura F." loading="lazy"/></div>
+        <div class="tg-body">
+          <div class="tg-top">
+            <div class="tg-info">
+              <div class="tg-name">Laura F.</div>
+              <div class="tg-loc">Frankfurt · vor 6 Tagen</div>
+            </div>
+            <div class="tg-stars">★★★★★</div>
+          </div>
+          <p class="tg-txt">„Kein Chemikaliengeruch, sanfte Formel und so schnell aufgetragen – alles was ich mir gewünscht habe. Für meine Nägel kommt jetzt nichts anderes mehr in Frage!"</p>
+          <div class="tg-ok">✓ Verifizierter Kauf</div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="testi-slider-dots" id="testiDots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="sec sec-cream">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Vergleich</div>
+    <h2 class="sh">5 Gründe für Feel1</h2>
+    <p class="sd">Ein ehrlicher Blick – damit du siehst, was wirklich zählt.</p>
+    <div class="cmp-wrap">
+
+      <div class="cmp-header">
+        <div class="cmp-hdr-feel">Feel1 Nagellackstift</div>
+        <div class="cmp-hdr-vs">vs</div>
+        <div class="cmp-hdr-reg">Normaler Lack</div>
+      </div>
+
+      <div class="cmp-rows">
+        <div class="cmp-row">
+          <div class="cmp-feel"><div class="ck-c">✓</div><span class="cmp-ft">Einfach anzuwenden</span></div>
+          <div class="cmp-mid"><span class="cmp-cat">Anwendung</span></div>
+          <div class="cmp-reg"><span class="cmp-rt">Unordentlich &amp; schwierig</span><div class="cx-c">✗</div></div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-feel"><div class="ck-c">✓</div><span class="cmp-ft">Fertig in 5 Minuten</span></div>
+          <div class="cmp-mid"><span class="cmp-cat">Trocknung</span></div>
+          <div class="cmp-reg"><span class="cmp-rt">Trocknet ewig</span><div class="cx-c">✗</div></div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-feel"><div class="ck-c">✓</div><span class="cmp-ft">Makelloses Finish</span></div>
+          <div class="cmp-mid"><span class="cmp-cat">Ergebnis</span></div>
+          <div class="cmp-reg"><span class="cmp-rt">Klumpig &amp; streifig</span><div class="cx-c">✗</div></div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-feel"><div class="ck-c">✓</div><span class="cmp-ft">Geruchlos &amp; sauber</span></div>
+          <div class="cmp-mid"><span class="cmp-cat">Geruch</span></div>
+          <div class="cmp-reg"><span class="cmp-rt">Starker Chemikaliengeruch</span><div class="cx-c">✗</div></div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-feel"><div class="ck-c">✓</div><span class="cmp-ft">5 Farb-Kollektionen</span></div>
+          <div class="cmp-mid"><span class="cmp-cat">Vielfalt</span></div>
+          <div class="cmp-reg"><span class="cmp-rt">Immer gleicher Look</span><div class="cx-c">✗</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-white" style="padding-top:100px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Was ist enthalten</div>
+    <h2 class="sh">Alles, was du für makellose Nägel brauchst.</h2>
+    <p class="sd">Kein Zubehör nötig – einfach öffnen, auftragen, fertig.</p>
+    <div class="ing-grid" id="ingGrid">
+
+      <div class="ing-card">
+        <div class="ing-card-img"><img src="Nail%20Polish%20DE/usp1.jpg" alt="Feel1 Nail Kit" loading="lazy"/></div>
+        <div class="ing-card-body">
+          <h3 class="ing-title">Jedes Set enthält</h3>
+          <p class="ing-desc">Alles, was du für ein Salon-Ergebnis zuhause brauchst – komplett im Kit.</p>
+          <ul class="ing-checklist">
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> 5 × Feel1 Nagellackstift</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> 1 × Feel1 Überlack</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> 1 × Feel1 Unterlack</li>
+          </ul>
+          <div class="ing-footer-line">Vollständiges Nail-Kit</div>
+        </div>
+      </div>
+
+      <div class="ing-card">
+        <div class="ing-card-img"><img src="Nail%20Polish%20DE/usp2.jpg" alt="Einfache Anwendung" loading="lazy"/></div>
+        <div class="ing-card-body">
+          <h3 class="ing-title">Einfach &amp; angenehm</h3>
+          <p class="ing-desc">Nagelpflege, die Spaß macht. Kein Kleckern, keine klebrigen Finger, kein starker Geruch.</p>
+          <ul class="ing-checklist">
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Kein Kleckern, kein Stress</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Angenehme, milde Formel</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Ein Ritual, das du lieben wirst</li>
+          </ul>
+          <div class="ing-footer-line">Nagelpflege neu gedacht</div>
+        </div>
+      </div>
+
+      <div class="ing-card">
+        <div class="ing-card-img"><img src="Nail%20Polish%20DE/usp3.jpg" alt="Salon-Ergebnis" loading="lazy"/></div>
+        <div class="ing-card-body">
+          <h3 class="ing-title">Salon-Ergebnis</h3>
+          <p class="ing-desc">Gleichmäßig auftragen leicht gemacht. Kein verschwendeter Lack, keine ungleichmäßigen Striche.</p>
+          <ul class="ing-checklist">
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Präzisions-Spitzenapplikator</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Hochglanz-Finish</li>
+            <li class="ing-item"><svg class="ing-check" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Trocknet in 60 Sekunden</li>
+          </ul>
+          <div class="ing-footer-line">Salon-Qualität für zuhause</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="ing-slider-dots" id="ingDots">
+      <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-cream">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Produktdetails</div>
+    <h2 class="sh">Alles über deinen Feel1 Stift</h2>
+    <div class="det-grid">
+      <div class="det-img">
+        <img src="Nail%20Polish%20DE/fee1%20detail.jpg" alt="Feel1 Nagellackstift" />
+      </div>
+      <div class="det-acc">
+        <div class="acc-item open">
+          <button class="acc-btn" onclick="toggleAcc(this)">Inhaltsstoffe &amp; Formel <span class="acc-ico">+</span></button>
+          <div class="acc-body">Schnelltrocknende Hochglanz-Polymere und stärkende Pflegestoffe. Frei von schädlichen Weichmachern. Vegan und tierversuchsfrei.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">Haltbarkeit &amp; Pflege <span class="acc-ico">+</span></button>
+          <div class="acc-body">5–7 Tage bei normaler Belastung. Mit beigelegtem Topcoat bis zu 10 Tage. Entfernung mit handelsüblichem Nagellackentferner.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">Größe &amp; Handhabung <span class="acc-ico">+</span></button>
+          <div class="acc-body">Kompaktes Stift-Format – kleiner als ein Lippenstift. Präzisions-Spitze ermöglicht sauberes Arbeiten auch ohne Übung.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">Sicherheit &amp; Zertifizierung <span class="acc-ico">+</span></button>
+          <div class="acc-body">Dermatologisch geprüft und empfohlen. Sicher für empfindliche Haut und Nägel – auch für tägliche Anwendung geeignet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-light">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="guar-box">
+      <div class="guar-shield"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15 9.99999M20 12C20 16.4611 14.54 19.6937 12.6414 20.683C12.4361 20.79 12.3334 20.8435 12.191 20.8712C12.08 20.8928 11.92 20.8928 11.809 20.8712C11.6666 20.8435 11.5639 20.79 11.3586 20.683C9.45996 19.6937 4 16.4611 4 12V8.21759C4 7.41808 4 7.01833 4.13076 6.6747C4.24627 6.37113 4.43398 6.10027 4.67766 5.88552C4.9535 5.64243 5.3278 5.50207 6.0764 5.22134L11.4382 3.21067C11.6461 3.13271 11.75 3.09373 11.857 3.07827C11.9518 3.06457 12.0482 3.06457 12.143 3.07827C12.25 3.09373 12.3539 3.13271 12.5618 3.21067L17.9236 5.22134C18.6722 5.50207 19.0465 5.64243 19.3223 5.88552C19.566 6.10027 19.7537 6.37113 19.8692 6.6747C20 7.01833 20 7.41808 20 8.21759V12Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2 class="guar-h">30 Tage Geld-zurück-Garantie</h2>
+      <p class="guar-p">Wir sind von unserem Produkt überzeugt. Wenn du nicht vollständig begeistert bist, erstatten wir dir den vollen Kaufpreis – ohne Fragen, ohne Aufwand.<br/><br/><strong>Dein Risiko: Null.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-white">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Häufige Fragen</div>
+    <h2 class="sh">Fragen? Wir haben Antworten.</h2>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Wie trage ich den Nagellackstift auf? <span class="faq-ico">+</span></button><div class="faq-ans">Kappe öffnen, Spitze auf den Nagel setzen und gleichmäßig führen. Trocknet in 2–3 Minuten fingertrocknen, nach 5–7 Minuten vollständig.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Wie lange hält das Ergebnis? <span class="faq-ico">+</span></button><div class="faq-ans">5–7 Tage bei normaler Belastung. Mit beigelegtem Topcoat bis zu 10 Tage ohne Absplittern.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Wie entferne ich den Nagellack? <span class="faq-ico">+</span></button><div class="faq-ans">Mit jedem handelsüblichen Nagellackentferner – acetonhaltig oder acetonfrei. Genau so einfach wie normaler Lack.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Auch für Anfängerinnen geeignet? <span class="faq-ico">+</span></button><div class="faq-ans">Absolut – das ist unser Kern-Versprechen. Kein Klecksen, kein Nachbessern. Professionelles Ergebnis beim ersten Versuch, garantiert.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Wie schnell wird geliefert? <span class="faq-ico">+</span></button><div class="faq-ans">Versand innerhalb 24h (Mo–Fr). 1–3 Werktage (DE), 2–4 Werktage (AT/CH). Sendungsverfolgung per E-Mail inklusive.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Was, wenn ich nicht zufrieden bin? <span class="faq-ico">+</span></button><div class="faq-ans">30 Tage Geld-zurück-Garantie. Volle Erstattung, keine Fragen, keine Rücksendegebühren. Einfach Kundenservice kontaktieren.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec sec-cream" id="bewertungen">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="eyebrow">Kundenbewertungen</div>
+    <h2 class="sh">Echte Ergebnisse. Echte Stimmen.</h2>
+    <div class="rev-agg">
+      <div class="rev-num">4,9</div>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-count">aus 3.412 verifizierten Bewertungen</div>
+    </div>
+    <div class="mason">
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T144717.571.jpg" alt="Klara B." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Wirklich wunderschöne Farben. Habe ihn jetzt seit 2 Wochen und bin immer noch begeistert. Die Anwendung geht so schnell – keine 5 Minuten und alle Nägel sitzen perfekt. Meine Kolleginnen fragen ständig, wo ich war 😄"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#7B3EA8,#4A2060);">K</div>
+          <div><div class="mc-name">Klara B.</div><div class="mc-meta">Düsseldorf · vor 2 Wochen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Schnell trocken, kein Geruch. Mehr brauche ich nicht zu sagen 👍"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#C12836,#6B1B35);">P</div>
+          <div><div class="mc-name">Petra W.</div><div class="mc-meta">Köln · vor 3 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T145545.962.jpg" alt="Tina H." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Die Farben sind so zart und schön – genau das Richtige für den Alltag. Trocknet wirklich in Sekunden, das ist kein Werbeversprechen. Und kein unangenehmer Geruch, ich bin wirklich positiv überrascht."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#8EC8A0,#9B89C0);">T</div>
+          <div><div class="mc-name">Tina H.</div><div class="mc-meta">Leipzig · vor 1 Woche</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Ich bin kein Fan von Nagelstudio-Terminen und lackiere eigentlich nie selbst. Aber mit Feel1 ist das so einfach geworden, dass ich es jetzt regelmäßig mache. Der Stift-Applikator macht wirklich den Unterschied."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#D84898,#4A1A68);">R</div>
+          <div><div class="mc-name">Regina P.</div><div class="mc-meta">Dresden · vor 9 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T145606.943.jpg" alt="Monika S." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Perfekte Farben für den Herbst! Trocknet extrem schnell."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#C84020,#1E5C30);">M</div>
+          <div><div class="mc-name">Monika S.</div><div class="mc-meta">Stuttgart · vor 4 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Hatte Bedenken wegen der Haltbarkeit, aber der Lack hält wirklich mehrere Tage problemlos. Mit dem Topcoat sogar noch länger. Und die Anwendung ist kinderleicht – auch ohne Übung sieht alles sauber aus."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#C12836,#6B1B35);">A</div>
+          <div><div class="mc-name">Anja R.</div><div class="mc-meta">Bremen · vor 5 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T150123.866.jpg" alt="Nadine G." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Einfach frisch und frühlingshaft. Liebe die Farben!"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#D84898,#4A1A68);">N</div>
+          <div><div class="mc-name">Nadine G.</div><div class="mc-meta">Hannover · vor 8 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Ich habe vorher immer normalen Lack benutzt und war immer genervt vom Geruch und der langen Trocknungszeit. Feel1 ist da komplett anders – riecht kaum, trocknet schnell und das Ergebnis ist gleichmäßig ohne Streifen. Bestelle jetzt schon zum dritten Mal."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#7B3EA8,#4A2060);">S</div>
+          <div><div class="mc-name">Stefanie K.</div><div class="mc-meta">Nürnberg · vor 11 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T150139.051.jpg" alt="Franziska L." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Zart, elegant, und wirklich einfach aufzutragen. Kein lästiger Geruch in der Wohnung. Mein Mann hat es zum ersten Mal gar nicht bemerkt!"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#8EC8A0,#9B89C0);">F</div>
+          <div><div class="mc-name">Franziska L.</div><div class="mc-meta">Freiburg · vor 2 Wochen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T150204.878.jpg" alt="Birgit M." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Mein täglicher Begleiter. Schnelle Anwendung, hält perfekt. Und dieser zarte Geruch – so angenehm im Vergleich zu normalem Lack."</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#C12836,#6B1B35);">B</div>
+          <div><div class="mc-name">Birgit M.</div><div class="mc-meta">Bonn · vor 6 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Super schnelle Lieferung und das Produkt hält was es verspricht!"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#C84020,#1E5C30);">C</div>
+          <div><div class="mc-name">Christina V.</div><div class="mc-meta">Augsburg · vor 1 Tag</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T150238.050.jpg" alt="Nicole B." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Ich habe alle 5 Farben gekauft und bereue es keine Sekunde. Jede Farbe ist wunderschön und die Qualität ist top. Eine Farbe ist mein absoluter Favorit – ich bekomme so viele Komplimente damit. Und das Beste: Aufgetragen in weniger als 5 Minuten, kein Geruch, direkt trocken. Mehr kann man sich nicht wünschen!"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#7B3EA8,#4A2060);">N</div>
+          <div><div class="mc-name">Nicole B.</div><div class="mc-meta">Münster · vor 3 Wochen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Als Mutter von zwei kleinen Kindern habe ich keine Zeit für lange Trocknungszeiten. Feel1 ist die Lösung – 3 Minuten und fertig, kein Stress, kein Kleckern auf den Kinderklamotten 😂"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#D84898,#4A1A68);">K</div>
+          <div><div class="mc-name">Kathrin O.</div><div class="mc-meta">Hannover · vor 7 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+      <div class="mason-card">
+        <div class="mason-img"><img src="Nail%20Polish%20DE/testimonials/New%20Project%20-%202026-04-11T150321.065.jpg" alt="Yvonne H." loading="lazy"/></div>
+        <div class="mc-stars">★★★★★</div>
+        <p class="mc-txt">„Erster Versuch, perfektes Ergebnis. Wirklich beeindruckend einfach!"</p>
+        <div class="mc-auth">
+          <div class="mc-av" style="background:linear-gradient(135deg,#8EC8A0,#9B89C0);">Y</div>
+          <div><div class="mc-name">Yvonne H.</div><div class="mc-meta">Karlsruhe · vor 2 Tagen</div><div class="mc-ok">✓ Verifizierter Kauf</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="final">
+  <div class="final-ey">Limitiertes Angebot</div>
+  <h2 class="final-h">Perfekte Nägel warten auf dich.</h2>
+  <p class="final-p">Jetzt 50% sparen – solange der Vorrat reicht. Versandkostenfrei.</p>
+  <a href="#" class="btn-final" onclick="event.preventDefault();openCart();">Jetzt bestellen →</a>
+  <div class="final-sub">⭐⭐⭐⭐⭐ &nbsp;4,9/5 · 3.400+ Bewertungen · 30 Tage Garantie</div>
+</div>
+
+<footer class="footer">
+  <img class="footer-logo" src="https://img.funnelish.com/5973/869783/1753174619-Feel1_LOGO.svg" alt="Feel1" width="80" onerror="this.style.display='none'"/>
+  <div class="footer-links">
+    <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Widerruf</a><a href="#">AGB</a><a href="#">Kontakt</a>
+  </div>
+  <div class="footer-copy">© 2025 Feel1 GmbH · Alle Preise inkl. MwSt.</div>
+</footer>
+
+<div class="sticky">
+  <div class="sticky-p">
+    <div class="sticky-old">£60,00</div>
+    <div class="sticky-new">£39,99</div>
+  </div>
+  <button class="sticky-btn" onclick="openCart()">Jetzt 50% sparen →</button>
+</div>
+
+<!-- ══ CART OVERLAY + DRAWER ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+
+  <!-- Header -->
+  <div class="cart-hdr">
+    <div class="cart-hdr-left">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-hdr-title">Warenkorb</span>
+      <div class="cart-hdr-badge" id="cartBadge">1</div>
+    </div>
+    <button class="cart-close" onclick="closeCart()" aria-label="Schließen">×</button>
+  </div>
+
+  <!-- Scrollable body -->
+  <div class="cart-body">
+
+    <!-- Dynamic item list -->
+    <div id="cartItemsList"></div>
+
+    <!-- Upsell -->
+    <div class="cart-upsell">
+      <div class="cart-upsell-img">
+        <img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Feel1 Rindertalg Creme"/>
+      </div>
+      <div class="cart-upsell-info">
+        <div class="cart-upsell-tag">🔥 Einmaliges Angebot</div>
+        <div class="cart-upsell-name">Feel1 Rindertalg Pflegecreme</div>
+        <div class="cart-upsell-desc">Tiefenwirksame Pflege mit reinem Rindertalg – beruhigt &amp; spendet Feuchtigkeit.</div>
+        <div class="cart-upsell-price-row">
+          <span class="cart-upsell-new">€29,99</span>
+          <span class="cart-upsell-was">€59,99</span>
+          <span class="cart-upsell-save">−50%</span>
+        </div>
+        <button class="cart-upsell-btn" id="cartUpsellBtn" onclick="cartToggleUpsell()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Hinzufügen
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /cart-body -->
+
+  <!-- Add variant strip -->
+  <div class="cart-add-variant">
+    <div class="cart-add-variant-lbl">Weitere Farbe hinzufügen</div>
+    <div class="cart-add-swatches">
+      <button class="cart-add-sw" data-key="rose" onclick="cartAddVariant('rose')" title="Rose">
+        <span class="sw-dot sw-rose"></span>
+        <span class="cart-sw-check">✓</span>
+      </button>
+      <button class="cart-add-sw" data-key="violett" onclick="cartAddVariant('violett')" title="Violett">
+        <span class="sw-dot sw-violett"></span>
+        <span class="cart-sw-check">✓</span>
+      </button>
+      <button class="cart-add-sw" data-key="pastell" onclick="cartAddVariant('pastell')" title="Pastell">
+        <span class="sw-dot sw-pastell"></span>
+        <span class="cart-sw-check">✓</span>
+      </button>
+      <button class="cart-add-sw" data-key="apfel" onclick="cartAddVariant('apfel')" title="Apfel">
+        <span class="sw-dot sw-apfel"></span>
+        <span class="cart-sw-check">✓</span>
+      </button>
+      <button class="cart-add-sw" data-key="lenz" onclick="cartAddVariant('lenz')" title="Lenz">
+        <span class="sw-dot sw-lenz"></span>
+        <span class="cart-sw-check">✓</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="cart-footer">
+    <!-- Gesamt row (always visible) — click to toggle breakdown on mobile -->
+    <div class="cart-total-toggle" onclick="toggleCartBreakdown()">
+      <span>Gesamt</span>
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span id="cartTotal">€39,99</span>
+        <span class="cart-total-toggle-arrow" id="cartBreakdownArrow">▾</span>
+      </span>
+    </div>
+    <!-- Collapsible breakdown -->
+    <div class="cart-breakdown" id="cartBreakdown">
+      <div class="cart-total-row">
+        <span>Zwischensumme</span>
+        <span id="cartSubtotal">€39,99</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Versand</span>
+        <span style="color:#3E8A5A;font-weight:600;">Kostenlos</span>
+      </div>
+      <div class="cart-total-row savings">
+        <span>Du sparst</span>
+        <span id="cartSavings">€20,01</span>
+      </div>
+    </div>
+    <button class="btn-cart-cta" onclick="cartCheckout()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Zur Kasse &nbsp;·&nbsp; <span id="cartCtaTotal">€39,99</span>
+    </button>
+    <div class="cart-secure">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      SSL-verschlüsselt &nbsp;·&nbsp; 30 Tage Garantie
+    </div>
+  </div>
+
+</div><!-- /cart-drawer -->
+
+<script>
+  /* ── VARIANT DATA ── */
+  var variants = {
+    rose:    { img: 'Nail%20Polish%20DE/main-rose.jpg',    name: 'Rose Set' },
+    violett: { img: 'Nail%20Polish%20DE/main-violett.jpg', name: 'Violett Set' },
+    pastell: { img: 'Nail%20Polish%20DE/main-pastell.jpg', name: 'Pastell Set' },
+    apfel:   { img: 'Nail%20Polish%20DE/main-apfel.jpg',   name: 'Apfel Set' },
+    lenz:    { img: 'Nail%20Polish%20DE/main-lenz.jpg',    name: 'Lenz Set' }
+  };
+
+  /* universal product shots always in gallery slots 1–3 */
+  var productShots = [
+    'Nail%20Polish%20DE/main-product1.jpg',
+    'Nail%20Polish%20DE/main-product2.jpg',
+    'Nail%20Polish%20DE/main-product3.jpg'
+  ];
+
+  var currentVariant = 'rose';
+  /* gallery: 3 product shots + variant colour as last slide */
+  var galImages = productShots.concat([variants.rose.img]);
+  var galIdx = 0;
+
+  function selectVariant(key, navigate) {
+    currentVariant = key;
+    var v = variants[key];
+    document.getElementById('vp-val').textContent = v.name;
+
+    /* rebuild: product shots first, variant last */
+    galImages = productShots.concat([v.img]);
+
+    /* update last thumb with new colour image */
+    document.getElementById('thumb3').src = v.img;
+
+    /* navigate to variant slide only on user interaction, not on init */
+    if(navigate) {
+      galThumbClick(3);
+    } else {
+      document.querySelectorAll('.gal-thumb').forEach(function(t, i){
+        t.classList.toggle('active', i === galIdx);
+      });
+    }
+  }
+
+  /* clicking a color card scrolls up and selects that variant */
+  function selectVariantCard(key) {
+    /* select the radio */
+    document.getElementById('c-' + key).checked = true;
+    selectVariant(key);
+    /* update active state on color cards */
+    var keys = ['rose','violett','pastell','apfel','lenz'];
+    document.querySelectorAll('.color-card').forEach(function(card, i){
+      card.classList.toggle('cc-active', keys[i] === key);
+    });
+    /* scroll to hero */
+    var hero = document.querySelector('.hero-wrap');
+    if(hero) window.scrollTo({ top: hero.getBoundingClientRect().top + window.pageYOffset - 66, behavior: 'smooth' });
+  }
+
+  /* gallery thumb click */
+  function galThumbClick(idx) {
+    galIdx = idx;
+    var main = document.getElementById('mainImg');
+    main.style.opacity = '0';
+    setTimeout(function(){ main.src = galImages[idx]; main.style.opacity = '1'; }, 150);
+    document.querySelectorAll('.gal-thumb').forEach(function(t, i){
+      t.classList.toggle('active', i === idx);
+    });
+  }
+
+  /* gallery arrow nav */
+  function galNav(dir) {
+    galIdx = (galIdx + dir + galImages.length) % galImages.length;
+    galThumbClick(galIdx);
+  }
+
+  /* accordion */
+  function toggleAcc(btn) {
+    var item = btn.closest('.acc-item');
+    var open = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(function(el){ el.classList.remove('open'); });
+    if(!open) item.classList.add('open');
+  }
+
+  /* FAQ */
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+    if(!open) item.classList.add('open');
+  }
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(this.getAttribute('href'));
+      if(t){ e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 68, behavior:'smooth' }); }
+    });
+  });
+
+  /* ══ CART STATE ══ */
+  var cartItems = [];   // [{key, qty}]
+  var cartUpsellAdded = false;
+  var heroQty = 1;
+  var CART_UNIT = 39.99;
+  var CART_UNIT_OLD = 60.00;
+  var CART_UPSELL = 29.99;
+  var CART_UPSELL_OLD = 59.99;
+
+  var swatchGradients = {
+    rose:    'conic-gradient(#6B1B35 0deg 72deg,#C12836 72deg 144deg,#D4527A 144deg 216deg,#E899B0 216deg 288deg,#F7C8D8 288deg 360deg)',
+    violett: 'conic-gradient(#4A2060 0deg 72deg,#7B3EA8 72deg 144deg,#A569BD 144deg 216deg,#C8A0D8 216deg 288deg,#E8DAEF 288deg 360deg)',
+    pastell: 'conic-gradient(#9B89C0 0deg 72deg,#8EC8A0 72deg 144deg,#F5C6D0 144deg 216deg,#C8B8DC 216deg 288deg,#B0D8C0 288deg 360deg)',
+    apfel:   'conic-gradient(#C84020 0deg 72deg,#8B6030 72deg 144deg,#E01020 144deg 216deg,#1E5C30 216deg 288deg,#88BB55 288deg 360deg)',
+    lenz:    'conic-gradient(#880020 0deg 72deg,#4A1A68 72deg 144deg,#1A5C2A 144deg 216deg,#7880C8 216deg 288deg,#D84898 288deg 360deg)'
+  };
+
+  function fmtCart(n){ return '€' + n.toFixed(2).replace('.',','); }
+
+  /* ── HERO QTY ── */
+  function heroChangeQty(d) {
+    heroQty = Math.max(1, Math.min(10, heroQty + d));
+    document.getElementById('heroQtyVal').textContent = heroQty;
+  }
+
+  /* ── CART OPEN / CLOSE ── */
+  function openCart() {
+    renderCartItems();
+    updateCartTotals();
+    document.getElementById('cartOverlay').classList.add('open');
+    document.getElementById('cartDrawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeCart(); });
+
+  /* ── ADD TO CART ── */
+  function addToCart(key, qty) {
+    var existing = null;
+    for(var i=0;i<cartItems.length;i++){if(cartItems[i].key===key){existing=cartItems[i];break;}}
+    if(existing) {
+      existing.qty = Math.min(10, existing.qty + qty);
+    } else {
+      cartItems.push({key:key, qty:qty});
+    }
+    updateNavBadge();
+  }
+
+  function cartAddVariant(key) {
+    addToCart(key, 1);
+    renderCartItems();
+    updateCartTotals();
+  }
+
+  function changeCartItemQty(key, d) {
+    for(var i=0;i<cartItems.length;i++){
+      if(cartItems[i].key===key){
+        cartItems[i].qty = Math.max(0, Math.min(10, cartItems[i].qty + d));
+        if(cartItems[i].qty===0) cartItems.splice(i,1);
+        break;
+      }
+    }
+    renderCartItems();
+    updateCartTotals();
+    updateNavBadge();
+  }
+
+  /* ── RENDER CART ITEMS ── */
+  function renderCartItems() {
+    var plusSvg = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+    var html = '';
+    if(cartItems.length === 0){
+      html = '<div style="padding:24px 20px;text-align:center;color:var(--muted);font-size:13px;">Dein Warenkorb ist leer.</div>';
+    } else {
+      cartItems.forEach(function(item){
+        var v = variants[item.key];
+        html += '<div class="cart-item">'
+          + '<div class="cart-item-img"><img src="'+v.img+'" alt="Feel1"/></div>'
+          + '<div class="cart-item-info">'
+          + '<div class="cart-item-name">Feel1 Nagellackstift Set</div>'
+          + '<div class="cart-item-sub">5 Stifte · Überlack · Unterlack</div>'
+          + '<div class="cart-v-badge" style="margin-bottom:0;">'
+          + '<div class="cart-v-badge-swatch" style="background:'+swatchGradients[item.key]+';width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.18);flex-shrink:0;"></div>'
+          + '<span>'+v.name+'</span></div>'
+          + '</div>'
+          + '<div class="cart-item-right">'
+          + '<div class="cart-item-price">'+fmtCart(item.qty*CART_UNIT)+'</div>'
+          + '<div class="cart-item-old">'+fmtCart(item.qty*CART_UNIT_OLD)+'</div>'
+          + '<div class="cart-qty">'
+          + '<button class="cart-qty-btn" onclick="changeCartItemQty(\''+item.key+'\',-1)">−</button>'
+          + '<div class="cart-qty-val">'+item.qty+'</div>'
+          + '<button class="cart-qty-btn" onclick="changeCartItemQty(\''+item.key+'\',1)">+</button>'
+          + '</div></div></div>';
+      });
+    }
+    document.getElementById('cartItemsList').innerHTML = html;
+
+    // Update add-variant swatch in-cart indicators
+    var keysInCart = cartItems.map(function(i){return i.key;});
+    document.querySelectorAll('.cart-add-sw').forEach(function(btn){
+      var inCart = keysInCart.indexOf(btn.dataset.key) !== -1;
+      btn.classList.toggle('in-cart', inCart);
+    });
+  }
+
+  /* ── UPSELL ── */
+  function cartToggleUpsell() {
+    cartUpsellAdded = !cartUpsellAdded;
+    var btn = document.getElementById('cartUpsellBtn');
+    if(cartUpsellAdded){
+      btn.classList.add('added');
+      btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Hinzugefügt';
+    } else {
+      btn.classList.remove('added');
+      btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Hinzufügen';
+    }
+    updateNavBadge();
+    updateCartTotals();
+  }
+
+  /* ── TOTALS ── */
+  function updateNavBadge() {
+    var total = cartItems.reduce(function(s,i){return s+i.qty;},0) + (cartUpsellAdded?1:0);
+    document.getElementById('navCartCount').textContent = total;
+    document.getElementById('cartBadge').textContent = total;
+  }
+
+  function updateCartTotals() {
+    var main = cartItems.reduce(function(s,i){return s+i.qty*CART_UNIT;},0);
+    var mainOld = cartItems.reduce(function(s,i){return s+i.qty*CART_UNIT_OLD;},0);
+    var total = main + (cartUpsellAdded ? CART_UPSELL : 0);
+    var totalOld = mainOld + (cartUpsellAdded ? CART_UPSELL_OLD : 0);
+    var savings = totalOld - total;
+    document.getElementById('cartSubtotal').textContent = fmtCart(total);
+    document.getElementById('cartSavings').textContent = fmtCart(savings);
+    document.getElementById('cartTotal').textContent = fmtCart(total);
+    document.getElementById('cartCtaTotal').textContent = fmtCart(total);
+  }
+
+  /* ── COLLAPSIBLE FOOTER BREAKDOWN ── */
+  var cartBreakdownOpen = false;
+  function toggleCartBreakdown() {
+    cartBreakdownOpen = !cartBreakdownOpen;
+    document.getElementById('cartBreakdown').classList.toggle('open', cartBreakdownOpen);
+    document.getElementById('cartBreakdownArrow').classList.toggle('open', cartBreakdownOpen);
+  }
+
+  /* ── CHECKOUT ── */
+  function cartCheckout() {
+    if(cartItems.length === 0) return;
+    var firstItem = cartItems[0];
+    var v = variants[firstItem.key];
+    try {
+      sessionStorage.setItem('f1_items',        JSON.stringify(cartItems));
+      // legacy single-item keys for backwards compat
+      sessionStorage.setItem('f1_variant',      firstItem.key);
+      sessionStorage.setItem('f1_variant_name', v.name);
+      sessionStorage.setItem('f1_variant_img',  v.img);
+      sessionStorage.setItem('f1_qty',          String(firstItem.qty));
+      sessionStorage.setItem('f1_upsell',       cartUpsellAdded ? '1' : '0');
+    } catch(e) {}
+    window.location.href = 'feel1-checkout.html';
+  }
+
+  /* ── ATC FROM HERO ── */
+  function goToCheckout() {
+    addToCart(currentVariant, heroQty);
+    openCart();
+  }
+
+  /* init: select rose on load */
+  selectVariant('rose');
+
+  /* ingredient card scroll dots */
+  var ingGrid = document.getElementById('ingGrid');
+  var ingDots = document.querySelectorAll('#ingDots .dot');
+  if(ingGrid && ingDots.length){
+    ingGrid.addEventListener('scroll', function(){
+      var w = ingGrid.querySelector('.ing-card').offsetWidth + 20;
+      var idx = Math.round(ingGrid.scrollLeft / w);
+      ingDots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    });
+  }
+
+  /* testimonial scroll dots */
+  var testiGrid = document.getElementById('testiGrid');
+  var testiDots = document.querySelectorAll('#testiDots .dot');
+  if(testiGrid && testiDots.length){
+    testiGrid.addEventListener('scroll', function(){
+      var w = testiGrid.querySelector('.tg-card').offsetWidth + 18; 
+      var idx = Math.round(testiGrid.scrollLeft / w);
+      if(idx < 0) idx = 0;
+      if(idx >= testiDots.length) idx = testiDots.length - 1;
+      testiDots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    });
+  }
+</script>
+</body>
+</html>
