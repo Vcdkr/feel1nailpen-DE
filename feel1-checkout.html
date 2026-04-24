@@ -285,15 +285,15 @@
         <!-- UPSELL -->
         <div class="co-upsell" id="upsellBlock">
           <div class="co-upsell-img">
-            <img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Feel1 Rindertalg Creme"/>
+            <img src="Nail%20Polish%20DE/upsell.jpg" alt="Feel1 Cuticle Oil"/>
           </div>
           <div class="co-upsell-info">
             <div class="co-upsell-tag">🔥 Einmaliges Angebot – Nur heute</div>
-            <div class="co-upsell-name">Feel1 Rindertalg Pflegecreme</div>
-            <div class="co-upsell-desc">Tiefenwirksame Hautpflege mit reinem Rindertalg. Spendet Feuchtigkeit, beruhigt empfindliche Haut.</div>
+            <div class="co-upsell-name">Feel1 Cuticle Oil</div>
+            <div class="co-upsell-desc">Hydratisiert Nagelhaut &amp; Nagel, fördert gesundes Nagelwachstum und verlängert die Haltbarkeit deiner Farbe. Ideal zusammen mit dem Nagellackstift.</div>
             <div class="co-upsell-price-row">
-              <span class="co-upsell-new">€29,99</span>
-              <span class="co-upsell-was">€59,99</span>
+              <span class="co-upsell-new">€14,99</span>
+              <span class="co-upsell-was">€29,99</span>
               <span class="co-upsell-save">-50%</span>
             </div>
             <button class="co-upsell-btn" id="upsellBtn" onclick="addUpsell()">
@@ -487,7 +487,7 @@
           <div class="co-sum-item" id="sumUpsell" style="display:none;">
             <div class="co-sum-img"><img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Creme"/></div>
             <div style="flex:1;min-width:0;">
-              <div class="co-sum-name">Rindertalg Pflegecreme</div>
+              <div class="co-sum-name">Cuticle Oil</div>
               <div class="co-sum-qty">Menge: 1</div>
             </div>
             <div class="co-sum-price">€29,99</div>
@@ -643,8 +643,8 @@
   var upsellAdded = false;
   var UNIT = 39.99;
   var UNIT_OLD = 60.00;
-  var UPSELL = 29.99;
-  var UPSELL_OLD = 59.99;
+  var UPSELL = 14.99;
+  var UPSELL_OLD = 29.99;
 
   // legacy single-item fallbacks
   var selectedVariant = 'rose';
@@ -815,7 +815,7 @@
       if(upsellAdded){
         items += '<div class="succ-item">'
           + '<div class="succ-item-img"><img src="https://img.funnelish.com/5973/0/1771478729-New%20Project%20-%202026-02-19T122514.636.jpg" alt="Creme"/></div>'
-          + '<div style="flex:1;min-width:0;"><div class="succ-item-name">Rindertalg Pflegecreme</div>'
+          + '<div style="flex:1;min-width:0;"><div class="succ-item-name">Cuticle Oil</div>'
           + '<div class="succ-item-sub">Menge: 1</div></div>'
           + '<div class="succ-item-price">'+fmt(UPSELL)+'</div></div>';
       }
